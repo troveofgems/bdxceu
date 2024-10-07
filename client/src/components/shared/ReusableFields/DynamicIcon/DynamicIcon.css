@@ -1,0 +1,41 @@
+.dynamicIcon {
+    margin-right: 1rem;
+    svg {
+        height:  30px;
+        width:  30px;
+        margin:  auto;
+        opacity:  .15;
+        transition:  all .3s ease;
+        path {
+            transition:  all .3s ease;
+        }
+    }
+}
+
+input:not(:placeholder-shown) + label {
+    transform:  translateY(-10px);
+    opacity:  .7;
+}
+
+input:visited + .icon {
+    svg {
+        opacity:  1;
+        path {
+            fill: rgb(182,157,230);
+        }
+    }
+}
+
+input:not(:valid):not(:focus) + label + .icon {
+    animation-name: shake-shake;
+    animation-duration: .3s;
+}
+
+@keyframes shake-shake {
+    0% { transform: translateX(-3px);}
+    20% { transform: translateX(3px); }
+    40% { transform: translateX(-3px);}
+    60% { transform: translateX(3px);}
+    80% { transform: translateX(-3px);}
+    100% { transform: translateX(0px);}
+}

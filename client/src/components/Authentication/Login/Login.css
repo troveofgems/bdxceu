@@ -1,0 +1,19 @@
+.styleAsLink {
+    color: blue;
+    background: none;
+    text-decoration: underline;
+    box-shadow: unset;
+}
+
+.styleAsLink:hover {
+    box-shadow: unset;
+    transform: unset;
+}
+
+form.log-in {
+    width: 75%;
+}
+
+form.log-in > h4 {
+    margin-top: 0;
+}
