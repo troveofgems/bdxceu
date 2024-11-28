@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-modal';
 
 // Available Modal Forms
@@ -34,39 +34,6 @@ export const AuthenticationModal = ({ modalType }) => {
         }
     };
 
-    const applyModalStyleOverrides = () => {
-        if(modalType.includes("registration")) {
-            return {
-                content: {
-                    top: '52%',
-                    left: '50%',
-                    right: 'auto',
-                    bottom: '-35%',
-                    marginRight: '-50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: "50%",
-                    height: "fit-content",
-                    padding: "20px",
-                    "overflowY": "hidden"
-                },
-            };
-        } else if (modalType.includes("login")) {
-            return {
-                content: {
-                    top: '50%',
-                    left: '50%',
-                    right: 'auto',
-                    bottom: 'auto',
-                    marginRight: '-50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: "40%",
-                    height: "fit-content",
-                    padding: "20px"
-                },
-            };
-        }
-    };
-
     const applyFormToShow = () => {
         if(modalType.includes("registration")) {
             return "registration";
@@ -75,8 +42,19 @@ export const AuthenticationModal = ({ modalType }) => {
         }
     }
 
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [modalStyle, setModalStyle] = React.useState(applyModalStyleOverrides());
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalStyle, setModalStyle] = useState({
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: '-35%',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            width: "fit-content",
+            height: "fit-content",
+            padding: "20px",
+        }});
     const [openModalButtonClasses, setOpenModalButtonClasses] = React.useState(applyButtonStyle());
     const [faceCTAButtonLabel, setFaceCTAButtonLabel] = React.useState(applyFaceCTAButtonLabel());
     const [actionButton, setActionButton] = React.useState(applyActionButtonLabel());
@@ -99,36 +77,9 @@ export const AuthenticationModal = ({ modalType }) => {
     function changeFormView(actionButton) {
         if(actionButton === "Login") {
             console.log("Show the Login Form!");
-            setModalStyle({
-                content: {
-                    top: '50%',
-                    left: '50%',
-                    right: 'auto',
-                    bottom: 'auto',
-                    marginRight: '-50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: "40%",
-                    height: "fit-content",
-                    padding: "20px"
-                },
-            });
             setActionButton("Sign-Up");
             setShowForm("login");
         } else if (actionButton === "Sign-Up") {
-            console.log("Show the Registration Form!");
-            setModalStyle({
-                content: {
-                    top: '52%',
-                    left: '50%',
-                    right: 'auto',
-                    bottom: '-35%',
-                    marginRight: '-50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: "50%",
-                    height: "fit-content",
-                    padding: "20px",
-                },
-            });
             setActionButton("Login");
             setShowForm("registration");
         }
@@ -162,7 +113,7 @@ export const AuthenticationModal = ({ modalType }) => {
                         </svg>
                     </div>
                     {showForm === "registration" && <RegistrationForm />}
-                    {showForm === "login" && <LoginForm showForgotPasswordForm={showForgotPasswordForm} />}
+                    {showForm === "login" && <LoginForm showForgotPasswordForm={showForgotPasswordForm} closeModal={closeModal}/>}
                     {showForm === "forgotPassword" && <ForgotPassword />}
                 </div>
             </Modal>

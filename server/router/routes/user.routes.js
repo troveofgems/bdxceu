@@ -1,13 +1,17 @@
 import express from "express";
-import {testController} from "../../controllers/user.controller.js";
+import {
+  handleFetchUserProfile,
+  handleUpdateUserProfile,
+} from "../../controllers/user.controller.js";
+
+import { level1Protection } from "../../middleware/jwt.route.auth.middleware.js";
 
 const userRouter = express.Router();
 
 userRouter
-    .route('/')
-    .get(testController);
-
-// Class Module Signups
-
+  .use(level1Protection)
+  .route("/profile")
+  .get(handleFetchUserProfile)
+  .put(handleUpdateUserProfile);
 
 export default userRouter;

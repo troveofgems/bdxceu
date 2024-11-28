@@ -4,7 +4,13 @@
   "description": "Chiropractic Educational Web Service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "concurrently \"cd ./client && npm run serve\"",
+    "devclient": "concurrently \"cd ./client && npm run start\"",
+    "server": "concurrently \"cd ./server && npm run start\"",
+    "devserver": "concurrently \"cd ./server && npm run dev\"",
+    "prod": "concurrently \"npm:server\" \"npm:client\"",
+    "dev": "concurrently \"npm:devserver\" \"npm:devclient\""
   },
   "author": "",
   "license": "ISC",

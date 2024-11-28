@@ -1,0 +1,106 @@
+[
+  {
+    "letterGrade": "A+",
+    "gradeRange": {
+      "min": 97.00,
+      "max": 100.00
+    },
+    "description": "Excellent"
+  },
+  {
+    "letterGrade": "A",
+    "gradeRange": {
+      "min": 93.00,
+      "max": 96.99
+    },
+    "description": "Excellent"
+  },
+  {
+    "letterGrade": "A-",
+    "gradeRange": {
+      "min": 90.00,
+      "max": 92.99
+    },
+    "description": "Excellent"
+  },
+  {
+    "letterGrade": "B+",
+    "gradeRange": {
+      "min": 87.00,
+      "max": 89.99
+    },
+    "description": "Good"
+  },
+  {
+    "letterGrade": "B",
+    "gradeRange": {
+      "min": 83.00,
+      "max": 87.99
+    },
+    "description": "Good"
+  },
+  {
+    "letterGrade": "B-",
+    "gradeRange": {
+      "min": 80.00,
+      "max": 82.99
+    },
+    "description": "Good"
+  },
+  {
+    "letterGrade": "C+",
+    "gradeRange": {
+      "min": 77.00,
+      "max": 79.99
+    },
+    "description": "Average"
+  },
+  {
+    "letterGrade": "C",
+    "gradeRange": {
+      "min": 73.00,
+      "max": 76.99
+    },
+    "description": "Average"
+  },
+  {
+    "letterGrade": "C-",
+    "gradeRange": {
+      "min": 70.00,
+      "max": 72.99
+    },
+    "description": "Average"
+  },
+  {
+    "letterGrade": "D+",
+    "gradeRange": {
+      "min": 67.00,
+      "max": 69.99
+    },
+    "description": "Below Average"
+  },
+  {
+    "letterGrade": "D",
+    "gradeRange": {
+      "min": 63.00,
+      "max": 66.99
+    },
+    "description": "Below Average"
+  },
+  {
+    "letterGrade": "D-",
+    "gradeRange": {
+      "min": 60.00,
+      "max": 62.99
+    },
+    "description": "Below Average"
+  },
+  {
+    "letterGrade": "F",
+    "gradeRange": {
+      "min": 0,
+      "max": 59.99
+    },
+    "description": "Fail"
+  }
+]

@@ -1,0 +1,14 @@
+.border__right {
+    border-right: 1px solid grey;
+}
+
+.checkboxPadding {
+}
+
+.check-box-label {
+    padding-left: .75rem;
+}
+
+.checkBoxLabel {
+    margin-top: 10px;
+}

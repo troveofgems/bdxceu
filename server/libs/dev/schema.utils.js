@@ -22,10 +22,10 @@ export const encryptPassword = async function (next) {
 };
 
 export const getSignedJwt = function () {
-  const { JWT_TOKEN_KEY, JWT_TOKEN_EXPIRATION } = process.env;
+  const { APP_AUTH_TOKEN_KEY, APP_AUTH_TOKEN_EXPIRATION } = process.env;
 
-  return jwt.sign({ id: this._id }, JWT_TOKEN_KEY, {
-    expiresIn: JWT_TOKEN_EXPIRATION,
+  return jwt.sign({ id: this._id }, APP_AUTH_TOKEN_KEY, {
+    expiresIn: `${APP_AUTH_TOKEN_EXPIRATION}`,
   });
 };
 

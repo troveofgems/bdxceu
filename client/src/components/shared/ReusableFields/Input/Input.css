@@ -3,8 +3,8 @@
 }
 
 .input__label {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 400;
     text-transform: capitalize;
 }
 
@@ -13,7 +13,7 @@
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin: 1rem;
 }
 
 .input__wrap {
@@ -30,6 +30,7 @@
     margin: 0;
     padding: 0;
     height: auto;
+    padding-left: .5rem;
 }
 
 .input__error {
@@ -45,6 +46,7 @@
 
 .input__field__wrapper {
     display: flex;
+    padding-right: 1rem;
 }
 
 .icon {
@@ -67,4 +69,8 @@
 
 .spanSpacer {
     margin-left: .5rem;
+}
+
+.disabled {
+    background-color: #ebebe4;
 }

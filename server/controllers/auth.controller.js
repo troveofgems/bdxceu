@@ -2,7 +2,8 @@ import User from "../db/models/User.model.js";
 import { buildAPIBodyResponse } from "../libs/dev/controller.utils.js";
 import { matchedData } from "express-validator";
 import { sendEmail } from "../libs/thirdParty/email-mailtrap/send.email.routine.js";
-import * as crypto from "node:crypto";
+import { setUserType } from "../middleware/jwt.route.auth.middleware.js";
+import { formatDate } from "../libs/dev/printing.utils.js";
 
 export const handleRegistration = async (req, res, next) => {
   let user = null,
@@ -10,7 +11,7 @@ export const handleRegistration = async (req, res, next) => {
     registrationData = matchedData(req);
 
   // Create User
-  await User.create(registrationData, null); // Create The User
+  await User.create(registrationData, null);
 
   // Fetch Newly Created User
   user = await User.where("email", registrationData.email)
@@ -60,11 +61,7 @@ export const handleLogin = async (req, res, next) => {
         await sendEmail("lockout", user);
       }
 
-      user.today = formatDate();
-      user.year = new Date().getFullYear();
-      await sendEmail("lockout", user);
-
-      apiResponse.success = true;
+      apiResponse.success = false;
       apiResponse.error =
         "Your Account Has Been Locked. Please Contact Support For Assistance.";
 
@@ -95,33 +92,53 @@ export const handleLogin = async (req, res, next) => {
     );
   }
 
-  apiResponse.success = true;
-
-  // Create JWT For User
-  res.cookie(process.env.JWT_COOKIE_NAME, await user.getSignedJwt(), {
-    maxAge: 900000,
-    httpOnly: true,
-  });
+  // Create Auth Token For User
+  const token = await user.getSignedJwt();
 
   // Return Data
+  apiResponse.success = true;
   apiResponse.data = {
+    _id: user._id,
     firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    authLevel: user.authLevel,
+    authLevel: setUserType(user.authLevel),
   };
 
-  return res.status(200).json(apiResponse);
+  return res
+    .cookie(process.env.APP_AUTH_COOKIE_NAME, token, {
+      domain: process.env.APP_AUTH_DOMAIN,
+      path: process.env.APP_AUTH_PATH,
+      httpOnly: true,
+      secure: process.env.NODE_ENV.includes("prod"),
+      sameSite: "strict",
+    })
+    .status(200)
+    .json(apiResponse);
+
+  /*maxAge: 30 * 24 * 60 * 60 * 1000,*/
 };
 
 export const handleLogout = async (req, res, next) => {
   let apiResponse = buildAPIBodyResponse("/auth/logout");
-  res.clearCookie(process.env.JWT_COOKIE_NAME, {
-    domain: process.env.JWT_DOMAIN,
-    path: process.env.JWT_PATH,
+
+  // Destroy the Cookie
+  res.clearCookie(process.env.APP_AUTH_COOKIE_NAME, {
+    domain: process.env.APP_AUTH_DOMAIN,
+    path: process.env.APP_AUTH_PATH,
+    httpOnly: true,
+    secure: process.env.NODE_ENV.includes("prod"),
+    sameSite: "strict",
   });
 
+  delete req.cookies;
+  delete req.user;
+  req.user = null;
+
   apiResponse.success = true;
+  apiResponse.data = {
+    loggedOut: true,
+    user: req.user,
+    token: req.cookies,
+  };
 
   return res.status(200).json(apiResponse);
 };
@@ -143,8 +160,6 @@ export const handleForgotPassword = async (req, res, next) => {
   // Get Reset Token
   const resetToken = await user.getResetPasswordToken(user);
 
-  console.log("Constructed Reset Token: ", resetToken);
-
   let dtp = {
     firstName: user.firstName,
     resetUrl_backend: `${req.protocol}://${req.get("host")}/api/v0.0.0-alpha/auth/change-password/${resetToken}`,
@@ -164,6 +179,7 @@ export const handleForgotPassword = async (req, res, next) => {
 };
 
 export const handleChangePassword = async (req, res, next) => {
+  console.log("Inside Handle Change Password: ", req.body, req.params);
   const userData = matchedData(req),
     apiResponse = buildAPIBodyResponse("/auth/change-password/:resetToken");
 
@@ -172,8 +188,17 @@ export const handleChangePassword = async (req, res, next) => {
     resetPasswordExpire: { $gt: Date.now() },
   });
 
+  console.log("User Found? ", user);
+
   if (!user) {
-    return next();
+    apiResponse.success = false;
+    apiResponse.error = true;
+    apiResponse.data = {
+      message:
+        "Expired Or Invalid Reset Token. Please Request Another Reset And Try Again Or Reach Out To Support.",
+    };
+
+    return res.status(200).json(apiResponse);
   }
 
   // Set New Password
@@ -195,33 +220,3 @@ export const handleChangePassword = async (req, res, next) => {
 };
 
 export const handleGoogleOAuth = async (req, res, next) => {};
-
-function formatDate() {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
-  const currentTS = new Date(),
-    formattedDate = currentTS.toLocaleString("en-US", options);
-
-  // Extract month abbreviation and day
-  const [dayName, day] = formattedDate.split(", ");
-
-  // Function to add ordinal suffix
-  function addOrdinalSuffix() {
-    const suffixes = ["st", "nd", "rd", "th"];
-    const lastDigit = currentTS.getDate() % 10;
-
-    if (lastDigit < 5) {
-      return suffixes[lastDigit - 1];
-    } else if (lastDigit === 0 || lastDigit >= 5) {
-      return suffixes[3];
-    }
-  }
-
-  // Combine month abbreviation, formatted day, and "ND"
-  console.log("Returning: ", `${dayName} ${day}${addOrdinalSuffix()}`);
-  return `${dayName} ${day}${addOrdinalSuffix()}`;
-}

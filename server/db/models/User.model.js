@@ -31,6 +31,10 @@ const UserModel = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    phone: {
+      type: String,
+      default: null,
+    },
     password: {
       type: String,
       required: true,
@@ -65,7 +69,17 @@ const UserModel = new mongoose.Schema(
       type: Date,
     },
     subscribedModules: {
-      type: [String],
+      type: [
+        {
+          product: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Product",
+          },
+          createdAt: { type: Date, default: Date.now },
+          _id: false,
+        },
+      ],
       default: [],
     },
     resetPasswordToken: {
@@ -84,7 +98,44 @@ const UserModel = new mongoose.Schema(
 
 UserModel.pre("save", encryptPassword);
 UserModel.methods.getSignedJwt = getSignedJwt;
+//UserModel.methods.clearJwt = getClearedJwt;
 UserModel.methods.verifyCredentials = verifyCredentials;
 UserModel.methods.getResetPasswordToken = getResetPasswordToken;
 
 export default mongoose.model("User", UserModel);
+
+/*
+ip: {
+    type: String,
+    default: null
+},
+statistics: {
+    type: {
+        courseCompletedAt: { type: Date, default: null },
+        courseGrade: { type: String, default: null },
+        examGrades: {
+            type: [
+                {
+                    examId: {
+                        type: String,
+                        default: null,
+                    },
+                    examName: {
+                        type: String,
+                        default: null,
+                    },
+                    examGrade: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        required: true,
+                        ref: "AmericanGradeScale",
+                    },
+                    examRef: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "Exam",
+                        required: true,
+                    },
+                },
+            ],
+        },
+    },
+},*/

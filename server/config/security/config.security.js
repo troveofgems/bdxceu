@@ -1,9 +1,9 @@
-import helmet from 'helmet';
-import hpp from 'hpp';
+import helmet from "helmet";
+import hpp from "hpp";
 
 export const applySecurityStandards = (app) => {
-    app.use(helmet());
-    app.use(hpp({}));
+  /* app.use(helmet());*/
+  app.use(hpp({}));
 
-    return app;
-}
+  return app;
+};

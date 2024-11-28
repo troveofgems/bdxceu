@@ -5,6 +5,9 @@ import { setRegistrationEmailTemplate } from "./templates/auth/registration/regi
 import { setAccountLockoutEmailTemplate } from "./templates/auth/lockout/lockout.template.js";
 import { setPasswordResetEmailTemplate } from "./templates/auth/passwordReset/passwordReset.template.js";
 import { setAccountInfoUpdatedEmailTemplate } from "./templates/auth/accountUpdate/accountUpdate.template.js";
+import { setRegistrationTeamMemberEmailTemplate } from "./templates/auth/addTeamMember/registration.team.member.template.js";
+import { setOrderPlacedEmailTemplate } from "./templates/order/placed/placed.template.js";
+import { setProductPublishedEmailTemplate } from "./templates/product/published/product.published.template.js";
 
 export const sendEmail = async function (templateType, emailData) {
   let transport = nodemailer.createTransport({
@@ -42,6 +45,9 @@ const fetchTemplate = function (templateType, emailData) {
     case "register":
       emailTemplate = setRegistrationEmailTemplate(emailData);
       break;
+    case "addTeamMember":
+      emailTemplate = setRegistrationTeamMemberEmailTemplate(emailData);
+      break;
     case "lockout":
       emailTemplate = setAccountLockoutEmailTemplate(emailData);
       break;
@@ -54,14 +60,14 @@ const fetchTemplate = function (templateType, emailData) {
     case "passwordReset":
       emailTemplate = setPasswordResetEmailTemplate(emailData);
       break;
+    case "orderPlaced":
+      emailTemplate = setOrderPlacedEmailTemplate(emailData);
+      break;
+    case "productPublished":
+      emailTemplate = setProductPublishedEmailTemplate(emailData);
+      break;
     /*case "orderCancelled":
             emailTemplate = setOrderCancelledEmailTemplate(emailData);
-            break;
-        case "orderDelivered":
-            emailTemplate = setOrderDeliveredEmailTemplate(emailData);
-            break;
-        case "orderPlaced":
-            emailTemplate = setPlacedOrderEmailTemplate(emailData);
             break;
         case "orderShipped":
             emailTemplate = setOrderShippedEmailTemplate(emailData);

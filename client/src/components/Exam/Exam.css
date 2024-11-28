@@ -1,6 +1,18 @@
 .examPanel {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 75%;
     margin: 0 auto;
+}
+
+.react-quiz-container {
+    max-width: unset!important;
+}
+
+.filter-dropdown-select {
+    height: 40px!important;
+}
+
+div.examPanel div.react-quiz-container div.questionWrapper div.card-body h2 {
+    margin-bottom: 15px!important;
 }

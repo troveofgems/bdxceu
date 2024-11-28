@@ -1,0 +1,1 @@
+export const getUserIp = () => window.location.hostname;

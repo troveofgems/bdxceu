@@ -1,0 +1,38 @@
+#splash {
+    -webkit-background-size: cover;
+    background-size: cover;
+    background: repeat-y fixed 50% 0;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#splash h3 {
+    letter-spacing: 2px;
+}
+
+#splash .btn {
+    background: #26253a;
+    border: none;
+    border-radius: 0px;
+    color: #999;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    padding: 16px 38px;
+    margin-top: 28px;
+    transition: all 0.4s ease-in-out;
+}
+
+#splash .btn:hover {
+    background: #ffffff;
+    color: #26253a;
+}
+

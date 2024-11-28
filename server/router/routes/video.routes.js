@@ -1,11 +1,8 @@
 import express from "express";
-import {testController} from "../../controllers/user.controller.js";
 
 const videoRouter = express.Router();
 
-videoRouter
-    .route('/')
-    .get(testController)
+videoRouter.route("/").get(() => {});
 /*
 
 router

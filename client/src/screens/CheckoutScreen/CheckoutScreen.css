@@ -1,0 +1,13 @@
+#PayPal.form-check-input,
+#Stripe.form-check-input {
+    height: 8px!important;
+    width: 2.5rem!important;
+    margin-top: 0;
+    margin-right: 1rem;
+}
+
+html body div#root main div.container div.row div.col-md-6 form.payment-methods-form div.align-content-center.form-check label.form-check-label {
+    transform: none;
+    font-size: 1.25rem;
+    align-self: center;
+}

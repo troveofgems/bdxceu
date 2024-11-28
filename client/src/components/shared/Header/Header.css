@@ -1,0 +1,72 @@
+/*---------------------------------------
+    Navigation section
+-----------------------------------------*/
+/*header {
+    position: relative;
+    top: -95px;
+    transition: transform 0.3s ease-in-out;
+}*/
+
+.navbar-default {
+    background: #ffffff;
+    border-bottom: 2px solid #f9f9f9;
+    box-shadow: none;
+    margin: 0 !important;
+}
+
+.navbar-default .navbar-brand {
+    color: #505050;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 50px;
+    margin: 0;
+}
+
+div.ms-auto.navbar-nav a.nav-link,
+div.ms-auto.navbar-nav a {
+    color: #999;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 60px;
+    letter-spacing: 0.6px;
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    padding: .5rem .5rem;
+    text-decoration: none;
+}
+
+div.ms-auto.navbar-nav a.nav-link:hover,
+div.ms-auto.navbar-nav a:hover {
+    color: #000;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #000;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #000;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle {
+    border: none;
+    padding-top: 10px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    color: #000;
+    border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    color: #000;
+    background-color: transparent;
+}

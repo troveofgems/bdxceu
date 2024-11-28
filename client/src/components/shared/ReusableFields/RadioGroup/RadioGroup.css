@@ -1,0 +1,110 @@
+.overrideWebkitAppearance {
+    font-size: unset!important;
+   /* padding: unset!important;*/
+    height: unset!important;
+    background: unset!important;
+    box-sizing: unset!important;
+    transition: unset!important;
+    color: unset!important;
+    font-weight: unset!important;
+    -webkit-appearance: radio!important;
+
+    border-bottom-width: 25px !important;
+    width: 25px!important;
+}
+
+.radioBody {
+    height: 100%
+}
+
+/*
+.hidden-toggles {
+    position: relative;
+    border-radius: 999em;
+    overflow: hidden;
+
+    height: 2.75em;
+    width: 20em;
+
+    display: flex;
+    flex-direction: row-reverse;
+
+    > * {
+        flex: 0 0 33.33%;
+    }
+
+    &:after {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        border: var(0.125em) solid var(#007ECC);
+        border-radius: 999em;
+        pointer-events: none;
+    }
+}
+
+.hidden-toggles__input {
+    display: none;
+
+    &:checked + .hidden-toggles__label {
+        background-color: var(#007ECC);
+        color: var(#FFFFFF);
+
+        &:before {
+            opacity: 1;
+        }
+
+        &:last-of-type {
+            background: linear-gradient(90deg, var(#007ECC) 0%, var(#007ECC-2) 100%);
+        }
+    }
+
+    &:nth-of-type(1) + label { order: 4 }
+    &:nth-of-type(2) + label { order: 3 }
+    &:nth-of-type(3) + label { order: 2 }
+    &:nth-of-type(4) + label { order: 1 }
+
+    &:nth-of-type(1):checked,
+    &:nth-of-type(2):checked {
+        ~ label:last-of-type {
+            margin-right: -33.33%;
+        }
+    }
+}
+
+.hidden-toggles__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    color: var(#003f66);
+
+    &:hover {
+        color: var(#007ECC);
+    }
+
+    &:nth-of-type(2) {
+        border-left: var(0.125em) solid var(#007ECC);
+        border-right: var(0.125em) solid var(#007ECC);
+    }
+
+    &:last-of-type {
+        border-left: var(0.125em) solid var(#007ECC);
+    }
+}
+
+.radioBody {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/

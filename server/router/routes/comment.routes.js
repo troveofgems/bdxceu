@@ -1,11 +1,8 @@
 import express from "express";
-import {testController} from "../../controllers/user.controller.js";
 
 const commentRouter = express.Router();
 
-commentRouter
-    .route('/')
-    .get(testController)
+commentRouter.route("/").get(() => {});
 /*
 
 router

@@ -1,0 +1,235 @@
+#error-page-wrapper {
+    position: relative;
+    height: 100vh;
+}
+
+#error-page-wrapper .errorBackgroundLines {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+#error-page-wrapper .errorBackgroundLines > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #eee;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(1) {
+    left: 20%;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(2) {
+    left: 40%
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(3) {
+    left: 60%
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(4) {
+    left: 80%
+}
+
+#error-page-wrapper .errorBackgroundLines > div:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -0.5px;
+    -webkit-transform: translateY(-160px);
+    -ms-transform: translateY(-160px);
+    transform: translateY(-160px);
+    height: 160px;
+    width: 2px;
+}
+
+.lineDrop_err_404 > div:after {
+    background-color: #85A1F2;
+}
+
+.lineDrop_err_401 > div:after {
+    background-color: #990f02;
+}
+
+.lineDrop_err_410 > div:after {
+    background-color: #40E0D0;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(1):after {
+    -webkit-animation: drop 3s infinite linear;
+    animation: drop 3s infinite linear;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(2):after {
+    -webkit-animation: drop 2s infinite linear;
+    animation: drop 2s infinite linear;
+    -webkit-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(3):after {
+    -webkit-animation: drop 3s infinite linear;
+    animation: drop 3s infinite linear;
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+#error-page-wrapper .errorBackgroundLines > div:nth-child(4):after {
+    -webkit-animation: drop 2s infinite linear;
+    animation: drop 2s infinite linear;
+    -webkit-animation-delay: 1.2s;
+    animation-delay: 1.2s;
+}
+
+#error-page-wrapper .errorPageBody {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.errorPageBody {
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+}
+
+.errorPageBody .err_404,
+.errorPageBody .err_401,
+.errorPageBody .err_410 {
+    height: 210px;
+    line-height: 210px;
+}
+
+.errorPageBody h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 188px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.errorPageBody .headerContainer_err_404 h1 {
+    text-shadow: 4px 4px 0 #85A1F2;
+}
+
+.errorPageBody .headerContainer_err_401 h1 {
+    text-shadow: 4px 4px 0 #990f02;
+}
+
+.errorPageBody .headerContainer_err_410 h1 {
+    text-shadow: 4px 4px 0 #40E0D0;
+}
+
+.errorPageBody h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+}
+
+.errorPageBody p {
+    font-family: 'Lato', sans-serif;
+    color: #000;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.errorReroute {
+    font-family: 'Lato', sans-serif;
+    padding: 10px 30px;
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-decoration: unset;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.err_404 a {
+    color: #000;
+    -webkit-box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #85A1F2;
+    box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #85A1F2;
+}
+
+.err_404 a:hover {
+    background-color: #85A1F2;
+    -webkit-box-shadow: 0 0 0 0 #000, 0 0 0 2px #85A1F2;
+    box-shadow: 0 0 0 0 #000, 0 0 0 2px #85A1F2;
+}
+
+.err_401 a {
+    color: #000;
+    -webkit-box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #990f02;
+    box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #990f02;
+}
+
+.err_401 a:hover {
+    color: #fff;
+    background-color: #990f02;
+    -webkit-box-shadow: 0 0 0 0 #000, 0 0 0 2px #990f02;
+    box-shadow: 0 0 0 0 #000, 0 0 0 2px #990f02;
+}
+
+.err_410 a {
+    color: #000;
+    -webkit-box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #40E0D0;
+    box-shadow: 0 0 0 2px #000, 2px 2px 0 2px #40E0D0;
+}
+
+.err_410 a:hover {
+    color: #fff;
+    background-color: #40E0D0;
+    -webkit-box-shadow: 0 0 0 0 #000, 0 0 0 2px #40E0D0;
+    box-shadow: 0 0 0 0 #000, 0 0 0 2px #40E0D0;
+}
+
+@-webkit-keyframes drop {
+        90% {
+            height: 20px;
+        }
+        100% {
+            height: 160px;
+            -webkit-transform: translateY(calc(100vh + 160px));
+            transform: translateY(calc(100vh + 160px));
+        }
+}
+
+@keyframes drop {
+        90% {
+            height: 20px;
+        }
+        100% {
+            height: 160px;
+            -webkit-transform: translateY(calc(100vh + 160px));
+            transform: translateY(calc(100vh + 160px));
+        }
+}
+
+@media only screen and (max-width: 480px) {
+    .errorPageBody .err_404,
+    .errorPageBody .err_401,
+    .errorPageBody .err_410 {
+        height: 122px;
+        line-height: 122px;
+    }
+    .errorPageBody .headerContainer_err_404 h1,
+    .errorPageBody .headerContainer_err_401 h1,
+    .errorPageBody .headerContainer_err_410 h1 {
+        font-size: 122px;
+    }
+    .errorPageBody h2 {
+        font-size: 26px;
+    }
+}

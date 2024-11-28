@@ -1,5 +1,7 @@
 import { buildHTMLBodyEmail } from "../../../shared/email.wrapper.js";
 
+/*import BDXCEU_Logo from "../../../shared/images/bdxceu.png";*/
+
 export const setRegistrationEmailTemplate = ({ firstName, today, year }) => {
   const subject = `Welcome to BodyDynamix ${firstName}!`;
 
@@ -91,7 +93,7 @@ If you have any questions you can reach us at support@bodydynamix.com
 <td style="padding-bottom: 10px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="https://www.dropbox.com/scl/fi/pcy19h5r2axktyzz8raf9/t10_image1.jpg?rlkey=y44usm7iqh12scjxhgnyeinj9&st=k2yr2ovv&dl=1" width="650" height="366" editable="true" border="0" alt="" /></td>
+<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left; background-color: #fff;"><img style="padding: 15px;" src="https://www.dropbox.com/scl/fi/ywti325ik85k3dhsgssrc/Q8774_BDX-1-1.png?rlkey=h8h60vf32dmc5mkyfl4eqcf4h&st=44bimnxk&dl=1" editable="true" width="650" height="366" border="0" alt="" /></td>
 </tr>
 <tr>
 <td class="p30-15 bbrr" style="padding: 40px; border-radius:0px 0px 10px 10px;" bgcolor="#ffffff">

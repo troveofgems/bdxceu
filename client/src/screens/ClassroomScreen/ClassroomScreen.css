@@ -1,0 +1,13 @@
+.courseVideo {
+    width: 1000px;
+    height: 500px;
+}
+
+.videoCarousel {
+    height: 500px;
+    background: #aeaeae;
+}
+
+.carousel-indicators {
+    visibility: hidden;
+}

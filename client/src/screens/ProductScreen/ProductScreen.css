@@ -1,0 +1,62 @@
+#product-header {
+    background: url('../../assets/images/team/sports_academy_team.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+#product .btn {
+    background: transparent;
+    border: 4px solid #26253a;
+    border-radius: 0px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 14px 46px;
+    transition: all 0.4s ease-in-out;
+    margin-top: 32px;
+}
+
+#product .btn:hover {
+    background: #26253a;
+    color: #ffffff;
+}
+
+.productContainer {
+    margin: 3rem auto;
+}
+
+.team-style-override {
+    padding: .1rem!important;
+    padding-top: 0!important;
+    width: 75%!important;
+    margin: 0 auto!important;
+}
+
+#course-instructor .course-instructor-thumb {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 32px;
+    padding: 0;
+}
+
+.instructorHeader {
+    padding: 1rem 0!important;
+    margin: 0!important;
+}
+
+.productByIdPage {
+    padding: 0!important;
+}

@@ -1,0 +1,12 @@
+.profileContainer {
+    margin: 3rem auto 1rem auto;
+}
+
+.form__border {
+    border-right: 1px solid #919295;
+    border-left: 1px solid #919295;
+}
+
+.profileForm {
+    padding: 0;
+}

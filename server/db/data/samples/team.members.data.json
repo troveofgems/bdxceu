@@ -1,0 +1,79 @@
+[
+  {
+    "firstName": "Beau",
+    "middleInitial": "",
+    "lastName": "Daniels",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C."
+    ],
+    "socialsList": []
+  },
+  {
+    "firstName": "Eddie",
+    "middleInitial": "",
+    "lastName": "Stanislawski",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C.",
+      "CSCS",
+      "DACBSP"
+    ],
+    "socialsList": []
+  },
+  {
+    "firstName": "Tyler",
+    "middleInitial": "",
+    "lastName": "Slamans",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C.",
+      "MS",
+      "CSCS"
+    ],
+    "socialsList": []
+  },
+  {
+    "firstName": "Brock",
+    "middleInitial": "",
+    "lastName": "Dudley",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C.",
+      "DACBSP"
+    ],
+    "socialsList": []
+  },
+  {
+    "firstName": "Charlotte",
+    "middleInitial": "",
+    "lastName": "Campbell",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C."
+    ],
+    "socialsList": []
+  },
+  {
+    "firstName": "Jordan",
+    "middleInitial": "",
+    "lastName": "Cordon",
+    "email": "",
+    "phone": "",
+    "headshot": "",
+    "certificationList": [
+      "D.C."
+    ],
+    "socialsList": []
+  }
+]

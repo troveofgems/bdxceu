@@ -1,0 +1,25 @@
+#co-founders {
+    padding: 10rem 0;
+    background: rgba(0, 0, 0, .6);
+    box-shadow: 0 2px 8px 10px rgba(50, 50, 50, 0.04);
+}
+
+#co-founders img {
+    background: #fff;
+    border: 4px solid #f9f9f9;
+    padding: 20px 20px 40px 20px;
+}
+
+#co-founders blockquote {
+    position: relative;
+    top: -35px;
+    left: 15px;
+}
+
+#co-founders h2 {
+    color: #fff;
+}
+
+#co-founders p {
+    color: seashell;
+}
