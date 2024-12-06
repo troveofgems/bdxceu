@@ -240,7 +240,7 @@ const AdminTeamMemberByIdScreen = () => {
                                                             <li key={course._id} className={"mb-2"}>
                                                                 <div>{course.courseTitle}</div>
                                                                 <div>
-                                                                    <small>Student Enrollments: {course.courseEnrollments}</small>
+                                                                    <small>Student Roster</small>
                                                                 </div>
                                                             </li>
                                                         ))

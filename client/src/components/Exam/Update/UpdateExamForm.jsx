@@ -9,7 +9,7 @@ import {Preloader} from "../../shared/Preloader/Preloader";
 
 // Redux Slices
 import {useGetUSGSQuery} from "../../../redux/slices/feDataSlice";
-import {useFetchProductsQuery} from "../../../redux/slices/productSlice";
+import {useFetchProductsForAdminQuery} from "../../../redux/slices/productSlice";
 import {useGetExamByIdQuery, useUpdateExamMutation} from "../../../redux/slices/examSlice";
 
 // Form Validations
@@ -39,7 +39,7 @@ export const UpdateExamForm = () => {
 
     // Fetch Form Data
     const { data: usgsData, isLoading: isLoadingUSGS, error: usgsError, refetch: refetchUSGS } = useGetUSGSQuery();
-    const { data: productList, isLoading: isLoadingProductList, error: productListError, refetch: refetchProductList } = useFetchProductsQuery();
+    const { data: productList, isLoading: isLoadingProductList, error: productListError, refetch: refetchProductList } = useFetchProductsForAdminQuery();
     const { data: exam, isLoading: isLoadingExam, error: examError, refetch: refetchExam } = useGetExamByIdQuery(examId);
 
     // Fetch Form Actions
@@ -253,6 +253,9 @@ export const UpdateExamForm = () => {
     const handlePreviewExam = () => {
         return navigate(`/classroom/${exam.data._id}/exam`);
     }
+    const updateQuestionStepper = evt => {
+        console.log("Update Question Stepper?", evt);
+    }
 
     return (isLoadingUpdateExam || isLoadingUSGS || isLoadingProductList || isLoadingExam) ? <Preloader/> : (
         <Container lg={4} md={6} sm={12}>
@@ -297,15 +300,15 @@ export const UpdateExamForm = () => {
                                             <h4>Question Set ({<NumberOfQuestionsWatched/>})</h4>
                                         </Col>
                                         <Col lg={2}>
-                                            <Input {...number_of_questions_validation} value={exam.data.nrOfQuestions}/>
+                                            <Input {...number_of_questions_validation} value={exam.data.nrOfQuestions} onChange={() => updateQuestionStepper}/>
                                         </Col>
                                     </Row>
 
                                     {
-                                        (!!exam && watchNrOfQuestions === 0 && exam?.data?.nrOfQuestions === 0) ?
+                                        (!!exam && exam?.data?.nrOfQuestions === 0) ?
                                             <h4 className={"text-center mt-3"}>No Questions Yet</h4>
                                             :
-                                            generateQuestionStepper((exam?.data?.nrOfQuestions > 0) ? exam.data.nrOfQuestions : watchNrOfQuestions)
+                                            generateQuestionStepper((exam?.data?.nrOfQuestions > 0) ? parseInt(exam.data.nrOfQuestions) : parseInt(watchNrOfQuestions))
                                     }
                                     {
                                         (watchNrOfQuestions > 0 || exam?.data?.nrOfQuestions > 0) && (

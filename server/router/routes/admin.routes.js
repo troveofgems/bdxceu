@@ -17,6 +17,7 @@ import {
 import {
   handleCreateProduct,
   handleDeleteProduct,
+  handleFetchAllProducts,
   handleUpdateProduct,
 } from "../../controllers/product.controller.js";
 import { validateProductData } from "../../validators/product/product.validators.js";
@@ -64,7 +65,10 @@ adminRouter
   .delete(handleDeleteTeamMember);
 
 /** ADMIN PRODUCT ROUTES */
-adminRouter.route("/products").post(validateProductData, handleCreateProduct);
+adminRouter
+  .route("/products")
+  .get(handleFetchAllProducts)
+  .post(validateProductData, handleCreateProduct);
 
 adminRouter
   .route("/products/:productId")

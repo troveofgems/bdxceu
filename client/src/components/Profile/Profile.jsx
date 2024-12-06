@@ -30,6 +30,11 @@ import LaurenJung from "../../assets/images/team/jung_headshot.jpg";
 import AnonProfile from "../../assets/images/placeholders/anon_profile.png";
 
 // CSS Import For Component
+
+import {Button, Container, Table} from "react-bootstrap";
+import {formatToUsd} from "../../assets/js/printing.utils";
+import {formatDate} from "../../utils/field.formatters";
+
 import "./Profile.css";
 export const ProfilePage = () => {
     const methods = useForm();
@@ -56,6 +61,7 @@ export const ProfilePage = () => {
         if(!isLoggedIn) return navigate("/");
 
         console.log("Need to fetch Profile? ", userProfile?.data?._id !== user._id);
+        console.log(userProfile);
         if(!userProfile || (!!userProfile && userProfile?.data?._id !== user._id)) {
             refetchUserProfile();
             console.log("Profile Refetch: ", userProfile);
@@ -108,14 +114,14 @@ export const ProfilePage = () => {
         <div className="profileContainer rounded bg-white overflow-x-hidden">
             <div className="row overflow-x-hidden">
                 <div className="d-flex justify-content-center overflow-x-hidden">
-                    <h2>
-                        {isStudent && "My Profile"}
+                    <h2 className={"mt-5"}>
+                        {isStudent && "Welcome Back!"}
                         {isTeamMember && `Welcome Instructor ${userProfile.data.lastName}`}
                         {isAuditor && `Welcome Auditor ${userProfile.data.lastName}`}
                         {isAdmin && `Welcome Administrator ${userProfile.data.lastName}`}
                     </h2>
                 </div>
-                <div className="col-md-3 border-right overflow-x-hidden">
+                <div className="col-md-12 border-right overflow-x-hidden">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                         <h5 className="font-weight-bold mb-3">{userProfile.data.firstName} {userProfile.data.lastName}</h5>
                         <img
@@ -132,115 +138,161 @@ export const ProfilePage = () => {
                         <h6 className="text-black-50">{userProfile.data.email}</h6>
                     </div>
                 </div>
-                <div className="col-md-6 border-right form__border overflow-x-hidden">
-                    <div className="p-3 py-5">
-                        { (loadingUserProfile) ? (
-                                <Preloader />
-                        ) : (userProfileLoaded) ? (<FormProvider {...methods}>
-                            <form onSubmit={e => e.preventDefault()}
-                                  noValidate
-                                  className="profile-form"
-                                  autoComplete="off">
-                                <div className="row w-100">
-                                    <div className="col-lg-5 col-md-12 col-sm-12">
-                                        <Input
-                                            {...first_name_validation}
-                                            value={userProfile.data.firstName}
-                                        />
-                                    </div>
-                                    <div className="col-lg-2 col-md-12  col-sm-12">
-                                        <Input
-                                            {...middle_initial_validation}
-                                            value={userProfile.data.middleInitial}
-                                        />
-                                    </div>
-                                    <div className="col-lg-5 col-md-12  col-sm-12">
-                                        <Input
-                                            {...last_name_validation}
-                                            value={userProfile.data.lastName}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="row w-100">
-                                    <div className="col-md-12">
-                                        <Input
-                                            {...email_validation_readonly}
-                                            iconName={"mdi:email"}
-                                            value={userProfile.data.email}
-                                            disabled={true}
-                                        />
-                                    </div>
-                                    <div className="col-md-12">
-                                        <CustomPhoneInput
-                                            {...phone_validation}
-                                            passVal={changePhone || userProfile.data.phone}
-                                            onChange={(e) => setPhoneNumber({
-                                                ...phoneNumber,
-                                                phoneNumber: e
-                                            })}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mt-5 w-100 text-end">
-                                    {
-                                        loadingUpdateUserProfile ? <Preloader/> : (
-                                            <button className={"modalButtonAuth buttonAuthLogin"}
-                                                    type="sumbit"
-                                                    onClick={onSubmit}>Update My Profile
-                                            </button>
-                                        )
-                                    }
-                                </div>
-                            </form>
-                        </FormProvider>) : <Preloader /> }
-                    </div>
+                <div className={"col-lg-12 mt-2"}>
+                    <Container>
+                        <h2 className={"mb-4"}>
+                            {isStudent && "Enrolled Courses"}
+                            {isTeamMember && "Taught Courses"}
+                            {isAdmin && "Site Products"}
+                        </h2>
+                        <Table striped hover responsive className={"table-sm"}>
+                            <thead>
+                            <tr>
+                                <th>Classroom</th>
+                                {isStudent && (
+                                    <>
+                                        <th>Course Completed On</th>
+                                        <th>Course Grade</th>
+                                        <th># Exam Attempts</th>
+                                    </>
+                                )}
+                                {isAdmin && (
+                                    <>
+                                        <th># of Students</th>
+                                        <th>Instructor</th>
+                                        <th>Completion Rate</th>
+                                    </>
+                                )}
+                                {isTeamMember && (
+                                    <>
+                                        <th># of Students</th>
+                                        <th>Completion Rate</th>
+                                    </>
+                                )}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {(userProfile.data.subscribedModules.length > 0) && userProfile.data.subscribedModules?.map((module, index) => (
+                                <>
+                                    {isStudent && (
+                                        <tr key={module._id}>
+                                            <td>
+                                                <Link
+                                                    to={`/classroom/${(module.product === null) ? "support" : module.product._id}`}>{(module.product === null) ? "Product Removed" : module.product.courseTitle}
+                                                </Link>
+                                            </td>
+                                            {(module.product === null) ? (
+                                                    <td>No Longer Accessible</td>
+                                                ) :
+                                                <td>{!module?.studentRecord ? "-" : formatDate(module.studentRecord.courseCompletedAt)}</td>
+                                            }
+                                            <td>{(!module?.studentRecord) ? "-" : module.studentRecord.courseGrade}</td>
+                                            <td>{(!module?.studentRecord) ? "0" : module.studentRecord.examAttempts.length}</td>
+                                            <td>
+                                                <Button variant={"light"} className={"btn-sm"} onClick={() => null}>
+                                                    View Exam History
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {isAdmin && (
+                                        <tr key={module._id}>
+                                            <td>
+                                                <Link
+                                                    to={`/classroom/${(module.product)}`}>
+                                                    {module.courseTitle}
+                                                </Link>
+                                            </td>
+                                            <td>{module.courseEnrollments}</td>
+                                            <td>{module.courseInstructor}</td>
+                                            <td>0.0%</td>
+                                        </tr>
+                                    )}
+                                    {isTeamMember && (
+                                        <tr key={module._id}>
+                                            <td>
+                                                <Link
+                                                    to={`/classroom/${(module.product)}`}>
+                                                    {module.courseTitle}
+                                                </Link>
+                                            </td>
+                                            <td>{module.courseEnrollments}</td>
+                                            <td>0.0%</td>
+                                        </tr>
+                                    )}
+                                </>
+                            ))}
+                            </tbody>
+                        </Table>
+                        {userProfile.data.subscribedModules.length === 0 && (
+                            <h4 className={"text-center mt-3 mb-5"}>No Data Yet!</h4>)}
+                    </Container>
                 </div>
-                <div className="col-md-3">
-                    <div className="p-3 py-5">
-                        <div className="d-flex experience">
-                            <h5>{isAdmin && "Site Products"}</h5>
-                            <h5>{isTeamMember && "Taught Courses"}</h5>
-                            <h5 className={"text-start"}>{isStudent && "Enrolled Courses"}</h5>
-                        </div>
-                        <div className="col-md-12">
-                            {isStudent && userProfileLoaded && (
-                                <ol>
-                                    {
-                                        userProfile.data.subscribedModules.length > 0 ? (
-                                            <>
-                                                {userProfile.data.subscribedModules.map((subscribedModule, index) => (
-                                                    <li key={index}>
-                                                        <Link
-                                                            to={`/classroom/${(subscribedModule.product === null) ? "support" : subscribedModule.product._id}`}>{(subscribedModule.product === null) ? "Product Removed" : subscribedModule.product.courseTitle}</Link>
-                                                    </li>
-                                                ))}
-
-                                            </>
-                                        ) : <p>Not Currently Enrolled</p>
-                                    }
-                                </ol>
-                            )}
-                            {
-                                isAdmin && userProfileLoaded && (
-                                    <ol>
+                <div className="col-lg-12 mt-3 overflow-x-hidden m-auto">
+                    <Container>
+                        <h2 className={"mb-4"}>My Profile</h2>
+                        <div>
+                            {(loadingUserProfile) ? (
+                                <Preloader/>
+                            ) : (userProfileLoaded) ? (<FormProvider {...methods}>
+                                <form onSubmit={e => e.preventDefault()}
+                                      noValidate
+                                      className="profile-form"
+                                      autoComplete="off">
+                                    <div className="row w-100">
+                                        <div className="col-lg-5 col-md-12 col-sm-12">
+                                            <Input
+                                                {...first_name_validation}
+                                                value={userProfile.data.firstName}
+                                            />
+                                        </div>
+                                        <div className="col-lg-2 col-md-12  col-sm-12">
+                                            <Input
+                                                {...middle_initial_validation}
+                                                value={userProfile.data.middleInitial}
+                                            />
+                                        </div>
+                                        <div className="col-lg-5 col-md-12  col-sm-12">
+                                            <Input
+                                                {...last_name_validation}
+                                                value={userProfile.data.lastName}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row w-100">
+                                        <div className="col-md-12">
+                                            <Input
+                                                {...email_validation_readonly}
+                                                iconName={"mdi:email"}
+                                                value={userProfile.data.email}
+                                                disabled={true}
+                                            />
+                                        </div>
+                                        <div className="col-md-12">
+                                            <CustomPhoneInput
+                                                {...phone_validation}
+                                                passVal={changePhone || userProfile.data.phone}
+                                                onChange={(e) => setPhoneNumber({
+                                                    ...phoneNumber,
+                                                    phoneNumber: e
+                                                })}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="mt-5 w-100 text-end">
                                         {
-                                            userProfile?.data?.subscribedModules?.length > 0 ? (
-                                                <>
-                                                    {userProfile?.data?.subscribedModules?.map((subscribedModule, index) => (
-                                                        <li key={index}>
-                                                            <Link
-                                                                to={`/classroom/${subscribedModule.product}`}>{subscribedModule.courseTitle}</Link>
-                                                        </li>
-                                                    ))}
-
-                                                </>
-                                            ) : <p>No Available Courses</p>
+                                            loadingUpdateUserProfile ? <Preloader/> : (
+                                                <button className={"modalButtonAuth buttonAuthLogin"}
+                                                        type="sumbit"
+                                                        onClick={onSubmit}>Update My Profile
+                                                </button>
+                                            )
                                         }
-                                    </ol>
-                                )
-                            }
+                                    </div>
+                                </form>
+                            </FormProvider>) : <Preloader/>}
                         </div>
-                    </div>
+                    </Container>
                 </div>
             </div>
         </div>

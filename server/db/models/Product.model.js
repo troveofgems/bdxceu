@@ -61,6 +61,9 @@ const ProductModel = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Exam",
           },
+          name: {
+            type: String,
+          },
         },
       ],
       default: [],

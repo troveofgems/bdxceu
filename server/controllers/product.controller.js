@@ -100,7 +100,6 @@ export const handleFetchAllProducts = async (req, res, next) => {
     populateObjectDataFor = null,
     populateSelectors = null;
 
-  console.log("Is there a user attached? ", req.user);
   if (isAdmin) {
     filter = {};
     projection = {
@@ -124,7 +123,7 @@ export const handleFetchAllProducts = async (req, res, next) => {
     };
   }
 
-  const apiResponse = buildAPIBodyResponse("/products"),
+  const apiResponse = buildAPIBodyResponse(req.originalUrl),
     products = isAdmin
       ? await Product.find(filter, projection, options).populate(
           populateObjectDataFor,
@@ -140,7 +139,7 @@ export const handleFetchAllProducts = async (req, res, next) => {
 
 export const handleUpdateProduct = async (req, res, next) => {
   let product = null,
-    apiResponse = buildAPIBodyResponse("/admin/products/:productId"),
+    apiResponse = buildAPIBodyResponse(req.originalUrl),
     validatedData = matchedData(req);
 
   let courseShouldBePublished = req.body.courseStatus === "true",
@@ -156,8 +155,6 @@ export const handleUpdateProduct = async (req, res, next) => {
       courseVideoList: req.body.courseVideoList,
       courseOfferingsList: req.body.courseOfferingsList,
     };
-
-  console.log("Updates to push: ", updates);
 
   product = await Product.findOneAndUpdate(
     { _id: req.params.productId },

@@ -20,39 +20,37 @@ const _writeToLog = (o, m, r, s, eid) => {
   return __printLog(eid, constructedMessageForConsole);
 };
 
-export const printingUtils = {
-  sendToConsole: _sendToConsole,
-  writeToLog: _writeToLog,
+const _assignOrdinalSuffix = (val) => {
+  let ord = "th",
+    assignOrdinalST = val % 10 === 1 && val % 100 !== 11,
+    assignOrdinalND = val % 10 === 2 && val % 100 !== 12,
+    assignOrdinalRD = val % 10 === 3 && val % 100 !== 13;
+
+  if (assignOrdinalST) {
+    ord = "st";
+  } else if (assignOrdinalND) {
+    ord = "nd";
+  } else if (assignOrdinalRD) {
+    ord = "rd";
+  }
+
+  return ord;
 };
 
 export function formatDate() {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
-  const currentTS = new Date(),
-    formattedDate = currentTS.toLocaleString("en-US", options);
+  const setLocales = "en-US",
+    formatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    },
+    currentTS = new Date(),
+    formattedDate = currentTS.toLocaleString(setLocales, formatOptions),
+    [dayName, day] = formattedDate.split(", ");
 
-  // Extract month abbreviation and day
-  const [dayName, day] = formattedDate.split(", ");
-
-  // Function to add ordinal suffix
-  function addOrdinalSuffix() {
-    const suffixes = ["st", "nd", "rd", "th"];
-    const lastDigit = currentTS.getDate() % 10;
-
-    if (lastDigit < 5) {
-      return suffixes[lastDigit - 1];
-    } else if (lastDigit === 0 || lastDigit >= 5) {
-      return suffixes[3];
-    }
-  }
-
-  // Combine month abbreviation, formatted day, and "ND"
-  console.log("Returning: ", `${dayName} ${day}${addOrdinalSuffix()}`);
-  return `${dayName} ${day}${addOrdinalSuffix()}`;
+  // Combine month abbreviation, formatted day, and "<ORDINAL>"
+  return `${dayName} ${day}${_assignOrdinalSuffix(currentTS)}`;
 }
 
 export function formatToUsd(number) {
@@ -71,3 +69,11 @@ export function formatToUsd(number) {
 
   return formatter.format(number);
 }
+
+export const printingUtils = {
+  getOrdinalSuffixForNumber: _assignOrdinalSuffix,
+  sendToConsole: _sendToConsole,
+  writeToLog: _writeToLog,
+  formatDate,
+  formatToUsd,
+};

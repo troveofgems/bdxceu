@@ -20,6 +20,7 @@ const Header = () => {
         { user } = useSelector((state) => state.auth),
         isLoggedIn = !!user,
         isAdmin = user?.authLevel === "admin" || false,
+        isStudent = user?.authLevel === "student" || false,
         isTeamMember = user?.authLevel === "team-member" || false;
 
     console.log("User Logged In: ", isLoggedIn, " Is Admin: ", isAdmin);
@@ -71,13 +72,15 @@ const Header = () => {
                                             <Link className={"nav-link"} role={"button"} to={"/admin/exams"}>Exams</Link>
                                         </>
                                     )}
-                                    <Link className={"nav-link"} role={"button"} to={"/products"}>Products</Link>
-                                    {isAdmin ? (
+                                    {isAdmin && (
                                         <>
+                                            <Link className={"nav-link"} role={"button"} to={"/products"}>Products</Link>
                                             <Link className={"nav-link"} role={"button"} to={"/admin/orders"}>Orders</Link>
                                         </>
-                                    ) : (
+                                    )}
+                                    {isStudent && (
                                         <>
+                                            <Link className={"nav-link"} role={"button"} to={"/products"}>Products</Link>
                                             <Link className={"nav-link"} role={"button"} to={"/orders"}>Orders</Link>
                                         </>
                                     )}

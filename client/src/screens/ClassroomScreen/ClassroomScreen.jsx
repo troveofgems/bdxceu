@@ -1,18 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
+import {Link, useParams} from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 /*import "./CheckoutScreen.css";*/
 import {Preloader} from "../../components/shared/Preloader/Preloader";
-import {formatToUsd} from "../../assets/js/printing.utils";
 import "./ClassroomScreen.css"
 import {useFetchProductByIdQuery} from "../../redux/slices/productSlice";
 
 
 import Carousel from 'react-bootstrap/Carousel';
 import CarouselItem from 'react-bootstrap/CarouselItem';
-import CarouselCaption from 'react-bootstrap/CarouselCaption';
-
 
 const ClassroomScreen = () => {
     const { productId } = useParams();
@@ -66,7 +63,7 @@ const ClassroomScreen = () => {
                     <button className="pricing__action mt-5 mb-5">
                         <Link to={
                             !!product.data.courseExamList[0] ?
-                                `/classroom/${(product.data.courseExamList[0]._id)}/exam` :
+                                `/classroom/${(product.data.courseExamList[0].examId)}/exam` :
                                 '/error404'
                         }>
                             Take the Exam

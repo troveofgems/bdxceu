@@ -30,6 +30,13 @@ export const examApiSlice = apiSlice.injectEndpoints({
                 body: {...updates}
             })
         }),
+        processExamResultsForStudent: builder.mutation({
+            query: ({studentId, examId, updates}) => ({
+                url: `/exam/${examId}/processExamResultsForStudent/${studentId}`,
+                method: "PUT",
+                body: updates
+            })
+        }),
         deleteExam: builder.mutation({
             query: (examId) => ({
                 url: `/admin/exam/${examId}`,
@@ -44,7 +51,8 @@ export const {
     useGetExamByIdQuery,
     useCreateExamMutation,
     useUpdateExamMutation,
-    useDeleteExamMutation
+    useDeleteExamMutation,
+    useProcessExamResultsForStudentMutation
 } = examApiSlice;
 
 export default examApiSlice.reducer;

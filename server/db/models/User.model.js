@@ -76,11 +76,53 @@ const UserModel = new mongoose.Schema(
             required: true,
             ref: "Product",
           },
+          studentRecord: {
+            type: {
+              courseCompletedAt: { type: Date, default: null },
+              courseGrade: { type: String, default: "Exam Not Yet Taken" },
+              examAttempts: {
+                type: [
+                  {
+                    examId: {
+                      type: String,
+                      default: null,
+                    },
+                    examName: {
+                      type: String,
+                      default: null,
+                    },
+                    examGrade: {
+                      type: mongoose.Schema.Types.ObjectId,
+                      required: false,
+                      ref: "AmericanGradeScale",
+                    },
+                    nrTimesExamTaken: {
+                      type: Number,
+                      default: 0,
+                    },
+                    examRef: {
+                      type: mongoose.Schema.Types.ObjectId,
+                      ref: "Exam",
+                      required: false,
+                    },
+                    attempt: {
+                      type: mongoose.Schema.Types.Mixed,
+                      default: null,
+                    },
+                  },
+                ],
+              },
+            },
+          },
           createdAt: { type: Date, default: Date.now },
           _id: false,
         },
       ],
       default: [],
+    },
+    ip: {
+      type: String,
+      default: "0.0.0.0",
     },
     resetPasswordToken: {
       type: String,
@@ -98,44 +140,7 @@ const UserModel = new mongoose.Schema(
 
 UserModel.pre("save", encryptPassword);
 UserModel.methods.getSignedJwt = getSignedJwt;
-//UserModel.methods.clearJwt = getClearedJwt;
 UserModel.methods.verifyCredentials = verifyCredentials;
 UserModel.methods.getResetPasswordToken = getResetPasswordToken;
 
 export default mongoose.model("User", UserModel);
-
-/*
-ip: {
-    type: String,
-    default: null
-},
-statistics: {
-    type: {
-        courseCompletedAt: { type: Date, default: null },
-        courseGrade: { type: String, default: null },
-        examGrades: {
-            type: [
-                {
-                    examId: {
-                        type: String,
-                        default: null,
-                    },
-                    examName: {
-                        type: String,
-                        default: null,
-                    },
-                    examGrade: {
-                        type: mongoose.Schema.Types.ObjectId,
-                        required: true,
-                        ref: "AmericanGradeScale",
-                    },
-                    examRef: {
-                        type: mongoose.Schema.Types.ObjectId,
-                        ref: "Exam",
-                        required: true,
-                    },
-                },
-            ],
-        },
-    },
-},*/

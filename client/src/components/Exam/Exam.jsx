@@ -1,19 +1,41 @@
 import React, {useEffect, useState} from 'react';
 import Quiz from 'react-quiz-component';
 
-import {useGetExamByIdQuery} from "../../redux/slices/examSlice";
+import {
+    useGetExamByIdQuery,
+    useProcessExamResultsForStudentMutation,
+    useUpdateExamMutation
+} from "../../redux/slices/examSlice";
 import {useParams} from "react-router-dom";
 import {Preloader} from "../shared/Preloader/Preloader";
 
 import "./Exam.css";
+import {useSelector} from "react-redux";
 export const ExamPage = () => {
     const {productId} = useParams();
     const [quiz, setQuiz] = useState(null);
 
-    const { data: exam, isLoading: isLoadingExam, refetch, error } = useGetExamByIdQuery(productId);
+    const { user } = useSelector((state) => state.auth);
 
-    const processResults = (quizResults) => {
-        console.log("Data For Quiz? ", quizResults);
+    const { data: exam, isLoading: isLoadingExam, refetch, error } = useGetExamByIdQuery(productId);
+    const [
+        processExamResultsForStudent,
+        { isLoading: isLoadingProcessExamResultsForStudent }
+    ] = useProcessExamResultsForStudentMutation();
+
+    const processResults = async (examResult) => {
+        console.log("Results For Exam? ", examResult);
+        try {
+            const res = await processExamResultsForStudent({
+                studentId: user._id,
+                examId: exam.data._id,
+                updates: examResult
+            });
+            console.log("Result Was: ", res);
+        } catch(err) {
+            console.error("Error: ", err);
+        }
+
     };
 
     useEffect(() => {

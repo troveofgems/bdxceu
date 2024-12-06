@@ -49,3 +49,19 @@ export default mongoose.model("AmericanGradeScale", AmericanGradeScaleModel);
 };
 
 seedData().then(() => console.log("Seed Complete"));*/
+
+/*async function findGradeScale(number) {
+    const query = {
+        $exists: ['gradeRange'],
+        'gradeRange.min': { $lte: number },
+        'gradeRange.max': { $gte: number }
+    };
+
+    try {
+        const result = await AmericanGradeScaleModel.findOne(query);
+        return result;
+    } catch (error) {
+        console.error('Error finding grade scale:', error);
+        throw error;
+    }
+}*/

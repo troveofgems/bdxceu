@@ -7,6 +7,11 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 url: `/products`
             })
         }),
+        fetchProductsForAdmin: builder.query({
+            query: () => ({
+                url: `/admin/products`
+            })
+        }),
         fetchProductById: builder.query({
             query: (productId) => ({
                 url: `/products/${productId}`

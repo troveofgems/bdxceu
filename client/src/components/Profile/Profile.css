@@ -1,5 +1,5 @@
 .profileContainer {
-    margin: 3rem auto 1rem auto;
+    margin: 0rem auto 1rem auto;
 }
 
 .form__border {
@@ -7,6 +7,6 @@
     border-left: 1px solid #919295;
 }
 
-.profileForm {
-    padding: 0;
+.profile-form {
+    padding: 0!important;
 }

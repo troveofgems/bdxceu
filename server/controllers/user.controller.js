@@ -8,16 +8,16 @@ import mongoose from "mongoose";
 
 export const handleFetchUserProfile = async (req, res, next) => {
   console.log("Inside Fetch User Profile...", req.user, req.cookies);
-  let isAdminOrTeamMember =
-      req.user.authType === "admin" || req.user.authType === "teamMember",
-    apiResponse = buildAPIBodyResponse("/user/profile"),
+  let isAdmin = req.user.authType === "admin",
+    isTeamMember = req.user.authType === "team-member",
+    apiResponse = buildAPIBodyResponse(req.originalUrl),
     user = await User.findById(req.user.id).populate(
       "subscribedModules.product",
       "courseTitle",
       "Product",
     );
 
-  console.log(isAdminOrTeamMember, user);
+  console.log(isAdmin, user);
 
   if (!user) {
     apiResponse.success = true;
@@ -38,18 +38,89 @@ export const handleFetchUserProfile = async (req, res, next) => {
   };
 
   // Provide Team Members and Admins With A Full List of Products Regardless if they're signed up or not.
-  if (isAdminOrTeamMember) {
-    apiResponse.data.subscribedModules = await Product.aggregate(
+  if (isAdmin) {
+    let productList = await Product.aggregate(
       [
+        {
+          $lookup: {
+            from: "teams",
+            localField: "courseInstructor",
+            foreignField: "_id",
+            as: "teamInfo",
+          },
+        },
         {
           $project: {
             product: "$_id",
             courseTitle: "$courseTitle",
+            courseEnrollments: "$courseEnrollments",
+            courseInstructor: {
+              $cond: [
+                { $isArray: "$teamInfo" },
+                {
+                  $concat: [
+                    { $arrayElemAt: ["$teamInfo.firstName", 0] },
+                    " ",
+                    { $arrayElemAt: ["$teamInfo.lastName", 0] },
+                  ],
+                },
+                "",
+              ],
+            },
           },
         },
       ],
       null,
     );
+
+    apiResponse.data.subscribedModules = productList;
+    console.log("Api Response: ", apiResponse.data.subscribedModules);
+  } else if (isTeamMember) {
+    let teamMemberId = await Team.findOne(
+      { email: req.user.email },
+      "_id",
+      null,
+    );
+    let productList = await Product.aggregate(
+      [
+        {
+          $match: {
+            courseInstructor: teamMemberId._id,
+          },
+        },
+        {
+          $lookup: {
+            from: "teams",
+            localField: "courseInstructor",
+            foreignField: "_id",
+            as: "teamInfo",
+          },
+        },
+        {
+          $project: {
+            product: "$_id",
+            courseTitle: "$courseTitle",
+            courseEnrollments: "$courseEnrollments",
+            courseInstructor: {
+              $cond: [
+                { $isArray: "$teamInfo" },
+                {
+                  $concat: [
+                    { $arrayElemAt: ["$teamInfo.firstName", 0] },
+                    " ",
+                    { $arrayElemAt: ["$teamInfo.lastName", 0] },
+                  ],
+                },
+                "",
+              ],
+            },
+          },
+        },
+      ],
+      null,
+    );
+
+    apiResponse.data.subscribedModules = productList;
     console.log("Api Response: ", apiResponse.data.subscribedModules);
   }
 
