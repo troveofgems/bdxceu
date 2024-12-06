@@ -22,8 +22,8 @@ const Team = () => {
                         <h2>Our Chiropractic Team</h2>
                         <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo.</p>
                     </div>
-                    {team.data.length === 0 && (<h4 className={"no__team_data"}>No Team Data Available!</h4>)}
-                    {team.data.length > 0 && (
+                    {team?.data?.length === 0 && (<h4 className={"no__team_data"}>No Team Data Available!</h4>)}
+                    {team?.data?.length > 0 && (
                         team.data.map((teamMember, index) => (
                             <div key={`${teamMember._id}_${index}`} className="wow fadeInUp col-md-4 col-sm-6" data-wow-delay="1.9s">
                                 <div className="chiropractic-team-thumb">

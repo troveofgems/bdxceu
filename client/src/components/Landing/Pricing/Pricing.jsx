@@ -77,7 +77,7 @@ const Pricing = () => {
 
                     {/* Not Logged In Product List View */}
                     {
-                        (!isLoggedIn && productList.data.length > 0) && productList.data.map((product, i) => (
+                        (!isLoggedIn && productList?.data?.length > 0) && productList.data.map((product, i) => (
                             <div
                                 className="wow fadeInUp col-md-6 col-sm-6  mt-2 mb-2"
                                 data-wow-delay={((1 + (parseInt(i) * 0.2))) + "s"}

@@ -11,8 +11,8 @@ import "./Splash.css"
 
 // Images
 const splashImages = [
-    "/images/home-bg-slider-img1.jpeg",
-    "/images/home-bg-slider-img2.jpg"
+    "/images/banners/home-bg-slider-img1.jpeg",
+    "/images/banners/home-bg-slider-img2.jpg"
 ];
 
 const Splash = () => {

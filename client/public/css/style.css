@@ -1,4 +1,3 @@
-
 body {
     background: #ffffff;
     font-family: 'Source Sans Pro', sans-serif;
@@ -13,7 +12,7 @@ html,body {
 
 
 /*---------------------------------------
-    Typorgraphy              
+    Typography
 -----------------------------------------*/
 h1,h2,h3,h4,h5,h6,
 blockquote {
@@ -72,9 +71,6 @@ a {
 /*---------------------------------------
     General               
 -----------------------------------------*/
-
-#newsletter,
-#testimonial,
 #blog-header {
   text-align: center;
 }
@@ -125,67 +121,6 @@ a {
             transform: scale(1);
     opacity: 0; } }
 
-
-
-
-
-
-
-
-/*---------------------------------------
-   Newsletter section              
------------------------------------------*/
-/*#newsletter {
-    background: url('../images/newsletter-bg.jpg') 50% 0 repeat-y fixed;
-    background-size: cover;
-    background-position: center center;
-    color: #ffffff;
-    padding-top: 12rem;
-    padding-bottom: 12rem;
-}*/
-
-/*#newsletter .newsletter_detail {
-  padding-top: 3rem;
-}*/
-
-/*#newsletter .form-control {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #999;
-  border-radius: 0px;
-  box-shadow: none;
-  font-size: 20px;
-  margin-bottom: 16px;
-  transition: all 0.4s ease-in-out;
-}
-
-#newsletter .form-control:focus {
-  border-bottom-color: #ffffff;
-}
-
-#newsletter input {
-  height: 45px;
-}
-
-#newsletter input[type="submit"] {
-  background: #26253a;
-  border: none;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 4px;
-  height: 65px;
-  margin-top: 42px;
-  transition: all 0.4s ease-in-out;
-}
-
-#newsletter input[type="submit"]:hover {
-  background: #ffffff;
-  color: #26253a;
-}*/
-
-
-
 #blog .blog-thumb {
   border: 1px solid #f0f0f0;
   position: relative;
@@ -195,7 +130,6 @@ a {
 }
 
 #blog .blog-thumb:hover {
-  background: url('../images/blog-thumb.jpg');
    -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -233,7 +167,7 @@ a {
 /* blog single page */
 
 #blog-header {
-    background: url('../images/blog-header-bg.jpg') 50% 0 repeat-y fixed;
+    background: url('../images/archive/blog-header-bg.jpg') 50% 0 repeat-y fixed;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: bottom center;
@@ -408,172 +342,20 @@ a {
 
 
 /*---------------------------------------
-    Testimonial section              
+    Affiliates section
 -----------------------------------------*/
-#testimonial {
+#affiliates {
     background: #ffffff;
     color: #26253a;
     padding-top: 8rem;
     padding-bottom: 8rem;
 }
 
-#testimonial .fa {
+#affiliates .fa {
   font-size: 42px;
   padding-bottom: 14px;
 }
 
-#testimonial h3 {
+#affiliates h3 {
   letter-spacing: 1px;
 }
-
-
-
-
-
-
-
-
-
-
-/*---------------------------------------
-   Responsive styles            
------------------------------------------*/
-@media (max-width: 980px) {
-  #home {
-    height: 65vh;
-  }
-
-  #overview {text-align: center;}
-
-  #overview blockquote {
-    top: 260px;
-    padding: 82px;
-  } 
-
-  #overview .overview-detail {
-    margin-left: 20px;
-    top: 72px;
-  }
-
-  footer .col-md-5 {
-    left: 30px;
-  }
-
-  #blog-header {
-    height: 40vh;
-  }
-
-}
-
-
-@media (max-width: 768px) {
-
-  #overview blockquote {
-    top: 306px;
-    left: 30px;
-    right: 10px;
-  }
-
-}
-
-
-@media (max-width: 767px) {
-
-  .navbar-default .navbar-brand {
-    line-height: 15px;
-  }
-
-  .navbar-default .navbar-nav li a {
-    font-size: 20px;
-    line-height: 18px;
-  }
-
-  #blog,
-  #price {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  #overview {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
-}
-
-
-@media (max-width: 760px) {
-
-  #home {
-    height: 100vh;
-  }
-
-  #blog-header {
-    height: 35vh;
-  }
-
-  #blog .blog-comment-form {
-    margin-bottom: 42px;
-  }
-
-  h1 {
-    font-size: 2.8rem;
-    line-height: 4.8rem;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  h3 {font-size: 18px}
-
-  p {font-size: 17px;}
-
-  #overview img {
-    margin-bottom: -60px;
-  }
-
-  #overview .overview-detail {
-    margin-top: 100px;
-    top: 0px;
-  }
-
-  #price .pricing__action {
-    font-size: 13px;
-  }
-
-  footer {text-align: center;}
-
-  footer .col-md-5 {
-    left: 0px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-}
-
-
-@media (max-width: 650px) {
-
-  #overview blockquote {
-    position: relative;
-    top: 0px;
-    left: 0px;
-  }
-
-}
-
-
-@media (max-width: 450px) {
-
-  #overview blockquote {
-    padding: 32px;
-  }
-
-  #overview .overview-detail {
-    margin-top: 32px;
-  }
-
-}
-
-

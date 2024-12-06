@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/styles/animate.css";
 
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 
