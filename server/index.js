@@ -46,7 +46,7 @@ async function initializeApp() {
   connections.appServer = applySecurityStandards(configureExpressOptions(app));
 
   // Enable CORs
-  //app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
 
   // Configure Cookie Parsing
   app.use(cookieParser());
