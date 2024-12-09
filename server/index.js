@@ -20,6 +20,7 @@ const allowedOrigins = [
   "http://localhost:3000", // React App's URL
   "http://localhost:31670", // Localhost Dev & Postman URL
   "https://bdxceu-frontend.onrender.com", // Development Hosted FE URL
+  "https://bdxceu-backend.onrender.com", // Development Hosted FE URL
   "https://bdxceu.com", // Production URL
   "https://www.bdxceu.com", // Production URL
 ];
