@@ -107,8 +107,8 @@ export const handleLogin = async (req, res, next) => {
     .cookie(process.env.APP_AUTH_COOKIE_NAME, token, {
       path: process.env.APP_AUTH_PATH,
       httpOnly: true,
-      secure: process.env.NODE_ENV.includes("prod"),
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
     })
     .status(200)
     .json(apiResponse);
