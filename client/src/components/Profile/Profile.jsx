@@ -31,7 +31,7 @@ import AnonProfile from "../../assets/images/placeholders/anon_profile.png";
 
 // CSS Import For Component
 
-import {Button, Container, Table} from "react-bootstrap";
+import {Button, Container, Row, Table} from "react-bootstrap";
 import {formatToUsd} from "../../assets/js/printing.utils";
 import {formatDate} from "../../utils/field.formatters";
 
@@ -121,22 +121,94 @@ export const ProfilePage = () => {
                         {isAdmin && `Welcome Administrator ${userProfile.data.lastName}`}
                     </h2>
                 </div>
-                <div className="col-md-12 border-right overflow-x-hidden">
-                    <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <h5 className="font-weight-bold mb-3">{userProfile.data.firstName} {userProfile.data.lastName}</h5>
-                        <img
-                            className="rounded-circle img-responsive mb-3" width="250" height="250"
-                            src={
-                                userProfile.data.email === "sheila.jackson@gmail.com" ? SheilaJackson :
-                                    userProfile.data.email === "lauren@sportsacademy.us" ? LaurenJung :
-                                        userProfile.data.email === "beau@sportsacademy.us" ? BeauDaniels :
-                                            userProfile.data.email === "eddie@sportsacademy.us" ? EddieStanislawski :
-                                                AnonProfile
-                            }
-                            alt={`User Avatar For ${userProfile.data.firstName}`}
-                        />
-                        <h6 className="text-black-50">{userProfile.data.email}</h6>
-                    </div>
+                <div className={"col-lg-12"}>
+                    <Container>
+                        <Row>
+                            <div className="col-lg-4 col-md-12 border-right overflow-x-hidden">
+                                <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                                    <h5 className="font-weight-bold mb-3">{userProfile.data.firstName} {userProfile.data.lastName}</h5>
+                                    <img
+                                        className="rounded-circle img-responsive mb-3" width="250" height="250"
+                                        src={
+                                            userProfile.data.email === "sheila.jackson@gmail.com" ? SheilaJackson :
+                                                userProfile.data.email === "lauren@sportsacademy.us" ? LaurenJung :
+                                                    userProfile.data.email === "beau@sportsacademy.us" ? BeauDaniels :
+                                                        userProfile.data.email === "eddie@sportsacademy.us" ? EddieStanislawski :
+                                                            AnonProfile
+                                        }
+                                        alt={`User Avatar For ${userProfile.data.firstName}`}
+                                    />
+                                    <h6 className="text-black-50">{userProfile.data.email}</h6>
+                                </div>
+                            </div>
+                            <div className="col-lg-8 mt-3 overflow-x-hidden">
+                                <Container>
+                                    {/*<h2 className={"text-center mb-4"}>My Profile</h2>*/}
+                                    <div className={"mt-5"}>
+                                        {(loadingUserProfile) ? (
+                                            <Preloader/>
+                                        ) : (userProfileLoaded) ? (<FormProvider {...methods}>
+                                            <form onSubmit={e => e.preventDefault()}
+                                                  noValidate
+                                                  className="profile-form"
+                                                  autoComplete="off">
+                                                <div className="row w-100">
+                                                    <div className="col-lg-5 col-md-12 col-sm-12">
+                                                        <Input
+                                                            {...first_name_validation}
+                                                            value={userProfile.data.firstName}
+                                                        />
+                                                    </div>
+                                                    <div className="col-lg-2 col-md-12  col-sm-12">
+                                                        <Input
+                                                            {...middle_initial_validation}
+                                                            value={userProfile.data.middleInitial}
+                                                        />
+                                                    </div>
+                                                    <div className="col-lg-5 col-md-12  col-sm-12">
+                                                        <Input
+                                                            {...last_name_validation}
+                                                            value={userProfile.data.lastName}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="row w-100">
+                                                    <div className="col-md-12">
+                                                        <Input
+                                                            {...email_validation_readonly}
+                                                            iconName={"mdi:email"}
+                                                            value={userProfile.data.email}
+                                                            disabled={true}
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <CustomPhoneInput
+                                                            {...phone_validation}
+                                                            passVal={changePhone || userProfile.data.phone}
+                                                            onChange={(e) => setPhoneNumber({
+                                                                ...phoneNumber,
+                                                                phoneNumber: e
+                                                            })}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="mt-5 w-100 text-end">
+                                                    {
+                                                        loadingUpdateUserProfile ? <Preloader/> : (
+                                                            <button className={"modalButtonAuth buttonAuthLogin"}
+                                                                    type="sumbit"
+                                                                    onClick={onSubmit}>Update My Profile
+                                                            </button>
+                                                        )
+                                                    }
+                                                </div>
+                                            </form>
+                                        </FormProvider>) : <Preloader/>}
+                                    </div>
+                                </Container>
+                            </div>
+                        </Row>
+                    </Container>
                 </div>
                 <div className={"col-lg-12 mt-2"}>
                     <Container>
@@ -228,72 +300,7 @@ export const ProfilePage = () => {
                             <h4 className={"text-center mt-3 mb-5"}>No Data Yet!</h4>)}
                     </Container>
                 </div>
-                <div className="col-lg-12 mt-3 overflow-x-hidden m-auto">
-                    <Container>
-                        <h2 className={"mb-4"}>My Profile</h2>
-                        <div>
-                            {(loadingUserProfile) ? (
-                                <Preloader/>
-                            ) : (userProfileLoaded) ? (<FormProvider {...methods}>
-                                <form onSubmit={e => e.preventDefault()}
-                                      noValidate
-                                      className="profile-form"
-                                      autoComplete="off">
-                                    <div className="row w-100">
-                                        <div className="col-lg-5 col-md-12 col-sm-12">
-                                            <Input
-                                                {...first_name_validation}
-                                                value={userProfile.data.firstName}
-                                            />
-                                        </div>
-                                        <div className="col-lg-2 col-md-12  col-sm-12">
-                                            <Input
-                                                {...middle_initial_validation}
-                                                value={userProfile.data.middleInitial}
-                                            />
-                                        </div>
-                                        <div className="col-lg-5 col-md-12  col-sm-12">
-                                            <Input
-                                                {...last_name_validation}
-                                                value={userProfile.data.lastName}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="row w-100">
-                                        <div className="col-md-12">
-                                            <Input
-                                                {...email_validation_readonly}
-                                                iconName={"mdi:email"}
-                                                value={userProfile.data.email}
-                                                disabled={true}
-                                            />
-                                        </div>
-                                        <div className="col-md-12">
-                                            <CustomPhoneInput
-                                                {...phone_validation}
-                                                passVal={changePhone || userProfile.data.phone}
-                                                onChange={(e) => setPhoneNumber({
-                                                    ...phoneNumber,
-                                                    phoneNumber: e
-                                                })}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="mt-5 w-100 text-end">
-                                        {
-                                            loadingUpdateUserProfile ? <Preloader/> : (
-                                                <button className={"modalButtonAuth buttonAuthLogin"}
-                                                        type="sumbit"
-                                                        onClick={onSubmit}>Update My Profile
-                                                </button>
-                                            )
-                                        }
-                                    </div>
-                                </form>
-                            </FormProvider>) : <Preloader/>}
-                        </div>
-                    </Container>
-                </div>
+
             </div>
         </div>
     );

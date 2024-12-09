@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Associated Styles
 import "../../parallax.css";
@@ -13,8 +13,6 @@ const FacilityServices = () => {
                         <img src="images/premises_2.jpeg" className="img-responsive" alt="Our Facility" width={600}
                              height={400}/>
                     </div>
-
-                    {/*<div className="col-md-1"></div>*/}
 
                     <div className="wow fadeInUp col-md-5 col-sm-12" data-wow-delay="1s">
                         <div className="overview-detail">

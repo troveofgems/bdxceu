@@ -1,0 +1,28 @@
+#affiliates {
+    background: #989898;
+    padding: 10rem 0;
+    margin-bottom: 0!important;
+}
+
+#affiliates img {
+    background: #fff;
+    border: 4px solid #f9f9f9;
+    padding: 20px 20px 40px 20px;
+    object-fit: fill;
+}
+
+.affiliate-logo {
+    width: 400px;
+    height: 579px;
+}
+
+.carouselItem {
+    position: relative;
+    left: 0;
+    background: rgba(152, 152, 152, 0.85);
+    text-align: center;
+}
+
+.affiliate-info {
+    color: #F8F8FF;
+}

@@ -12,6 +12,7 @@ import CoFounders from "../../components/Landing/CoFounders/CoFounders";
 
 import WOW from "wowjs";
 import {useSelector} from "react-redux";
+import OurAffiliatesSection from "../../components/Landing/Affiliates/Affiliates";
 
 const HomeScreen = () => {
     const
@@ -43,6 +44,9 @@ const HomeScreen = () => {
             </Col>
             <Col lg={12} md={12} sm={12}>
                 <FacilityServices />
+            </Col>
+            <Col lg={12} md={12} sm={12}>
+                <OurAffiliatesSection />
             </Col>
             <Col lg={12} md={12} sm={12}>
                 <CoFounders />
