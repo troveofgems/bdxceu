@@ -105,6 +105,7 @@ export const handleLogin = async (req, res, next) => {
 
   return res
     .cookie(process.env.APP_AUTH_COOKIE_NAME, token, {
+      domain: process.env.APP_AUTH_DOMAIN,
       path: process.env.APP_AUTH_PATH,
       httpOnly: true,
       secure: true,
