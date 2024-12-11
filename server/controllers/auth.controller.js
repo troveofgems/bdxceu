@@ -105,10 +105,10 @@ export const handleLogin = async (req, res, next) => {
 
   return res
     .cookie(process.env.APP_AUTH_COOKIE_NAME, token, {
-      domain: "localhost",
-      path: "/",
+      /*domain: "localhost",
+      path: "/",*/
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "strict",
     })
     .status(200)
@@ -122,10 +122,10 @@ export const handleLogout = async (req, res, next) => {
 
   // Destroy the Cookie
   res.clearCookie(process.env.APP_AUTH_COOKIE_NAME, {
-    domain: "localhost",
-    path: "/",
+    /*    domain: "localhost",
+    path: "/",*/
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: "strict",
   });
 
