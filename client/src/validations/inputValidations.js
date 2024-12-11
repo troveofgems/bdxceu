@@ -36,10 +36,12 @@ export const last_name_validation = {
 
 export const middle_initial_validation = {
     name: 'middle_initial',
-    label: 'Middle Initial',
+    label: 'Middle',
     type: 'text',
     id: 'middle_initial',
-    placeholder: 'R',
+    placeholder: 'R.',
+    minLength: 0,
+    maxLength: 2,
     validation: {
         maxLength: {
             value: 1,
@@ -105,20 +107,6 @@ export const phone_validation = {
     name: 'phonenumber',
     label: 'Contact Phone Number',
     type: 'tel',
-    id: 'phonenumber',
-    placeholder: '+1 (000) 000-0000',
-    validation: {
-        required: {
-            value: true,
-            message: 'Is Required',
-        }
-    },
-}
-
-export const payment_validation = {
-    name: 'payment',
-    label: 'Contact Phone Number',
-    type: 'radio',
     id: 'phonenumber',
     placeholder: '+1 (000) 000-0000',
     validation: {

@@ -1,24 +1,29 @@
 import React, {useEffect} from "react";
-
-// Associated Styles
-import "../parallax.css";
-import "./Pricing.css"
-import Rating from "../../Rating/Rating";
-import {Link} from "react-router-dom";
 import {Container, Row} from "react-bootstrap";
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import WOW from "wowjs";
+
+// Associated Components
+import {Preloader} from "../../shared/Preloader/Preloader";
+import Rating from "../../Rating/Rating";
+
+// Redux Connections
 import {useDeleteProductMutation} from "../../../redux/slices/productSlice";
 import {useFetchProductsQuery} from "../../../redux/slices/productSlice";
-import {Preloader} from "../../shared/Preloader/Preloader";
-import {formatToUsd} from "../../../assets/js/printing.utils";
-import WOW from "wowjs";
 import {useGetUserProfileQuery} from "../../../redux/slices/userSlice";
-import {useSelector} from "react-redux";
+
+// Dev Utils
+import {formatToUsd} from "../../../assets/js/printing.utils";
 import {getUserInfo} from "../../../utils/user.utils";
 
+// Associated Styles
+/*import "../parallax.css";*/
+import "./Pricing.css"
 const Pricing = () => {
     const
         { user } = useSelector((state) => state.auth),
-        { isLoggedIn, isStudent, isTeamMember, isAuditor, isAdmin } = getUserInfo(user);
+        { isLoggedIn, isStudent, isAdmin } = getUserInfo(user);
 
     const
         { // Products
@@ -53,12 +58,6 @@ const Pricing = () => {
         new WOW.WOW({
             live: false
         }).init();
-        if(!!productList) {
-            console.log("Product List? ", productList);
-        }
-        if(!!userData) {
-            console.log("User Data? ", userData);
-        }
     }, []);
 
     return (isLoadingProductList || isLoadingUserData) ? <Preloader /> : (

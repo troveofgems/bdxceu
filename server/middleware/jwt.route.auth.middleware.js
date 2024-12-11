@@ -7,7 +7,6 @@ const GENERIC_AUTH_ERROR_MESSAGE = "Invalid Auth Token Provided.";
 // Student Level Authorizer
 export const level1Protection = async (req, res, next) => {
   let loggedInUser = await validateUserToken(req, res, next);
-  console.log("Is user logged in? ", loggedInUser);
   return next();
 };
 

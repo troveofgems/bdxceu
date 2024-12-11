@@ -14,6 +14,7 @@ import Carousel from "react-bootstrap/Carousel";
 const OurAffiliatesSection = () => {
     const affiliates = [
         {
+          _id: 0,
           name: "Angel City",
           logoSrc: AngelCityLogo,
           alt: " Logo",
@@ -22,6 +23,7 @@ const OurAffiliatesSection = () => {
           customHeight: 479
         },
         {
+            _id: 1,
             name: "Pepperdine",
             logoSrc: PepperdineLogo,
             alt: " Logo",
@@ -30,6 +32,7 @@ const OurAffiliatesSection = () => {
             customHeight: false
         },
         {
+            _id: 2,
             name: "Rams",
             logoSrc: RamsLogo,
             alt: " Logo",
@@ -38,6 +41,7 @@ const OurAffiliatesSection = () => {
             customHeight: 550
         },
         {
+            _id: 3,
             name: "USA Field Hockey",
             logoSrc: USAFieldHockeyLogo,
             alt: " Logo",
@@ -46,6 +50,7 @@ const OurAffiliatesSection = () => {
             customHeight: false
         },
         {
+            _id: 4,
             name: "USA Volleyball",
             logoSrc: USAVolleyballLogo,
             alt: " Logo",
@@ -63,8 +68,8 @@ const OurAffiliatesSection = () => {
                     <div className="col-md-12 col-sm-12">
                         <Carousel fade pause={"hover"}>
                             {
-                                affiliates.length > 0 && affiliates.map(affiliate => (
-                                    <Carousel.Item className={"text-center"}>
+                                (affiliates.length > 0) && affiliates.map(affiliate => (
+                                    <Carousel.Item className={"text-center"} key={`affiliate_${affiliate._id}-${affiliate.name}`}>
                                         {
                                             typeof affiliate.customWidth === "number" ? (
                                                 <img
@@ -89,63 +94,6 @@ const OurAffiliatesSection = () => {
                                     </Carousel.Item>
                                 ))
                             }
-
-                            {/*<Carousel.Item className={"text-center"}>
-                                <img
-                                    src={AngelCityLogo}
-                                    className="img-responsive"
-                                    alt="Angel City Logo"
-                                    width={300}
-                                    height={479}
-                                />
-                                <Carousel.Caption className={"pt-5 carouselItem"}>
-                                    <h3>Angel City</h3>
-                                    <p className={"affiliate-info"}>Something About Angel City</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item className={"text-center"}>
-                                <img
-                                    src={RamsLogo}
-                                    className="img-responsive"
-                                    alt="Rams Logo"
-                                    width={500}
-                                    height={550}
-                                />
-                                <div>
-                                    <Carousel.Caption className={"pt-5 carouselItem"}>
-                                        <h3>Rams</h3>
-                                        <p className={"affiliate-info"}>
-                                            Something about the Rams.
-                                        </p>
-                                    </Carousel.Caption>
-                                </div>
-                            </Carousel.Item>
-                            <Carousel.Item className={"text-center"}>
-                                <img
-                                    src={USAFieldHockeyLogo}
-                                    className="img-responsive"
-                                    alt="USA Field Hockey Logo"
-                                />
-                                <Carousel.Caption className={"pt-5 carouselItem"}>
-                                    <h3>USA Field Hockey</h3>
-                                    <p className={"affiliate-info"}>
-                                        Something about USA Field Hockey.
-                                    </p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item className={"text-center"}>
-                                <img
-                                    src={USAVolleyballLogo}
-                                    className="img-responsive"
-                                    alt="USA Volleyball Logo"
-                                />
-                                <Carousel.Caption className={"pt-5 carouselItem"}>
-                                    <h3>USA Volleyball</h3>
-                                    <p className={"affiliate-info"}>
-                                        Something about USA Volleyball.
-                                    </p>
-                                </Carousel.Caption>
-                            </Carousel.Item>*/}
                         </Carousel>
                     </div>
                 </div>

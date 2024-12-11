@@ -66,7 +66,10 @@ export const mountRouterToApplication = async (app) => {
 
   // Mount Routes To The Application
   backend_apiRoutes.forEach((route) => {
-    if (process.env.NODE_ENV === "dev") {
+    if (
+      process.env.NODE_ENV === "dev" ||
+      process.env.NODE_ENV === "localhost"
+    ) {
       console.log("Mounted: ", `${eb_apiPrefix}${route.route}`);
     }
     app.use(`${eb_apiPrefix}${route.route}`, route.routeLoader);

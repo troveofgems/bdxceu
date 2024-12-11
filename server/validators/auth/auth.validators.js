@@ -138,7 +138,7 @@ export const validateLoginData = async (req, res, next) => {
     .withMessage("Password must be between 8 and 30 characters")
     .run(req);
 
-  let validatedResults = validationResult(req);
+  let validatedResults = await validationResult(req);
 
   if (validatedResults.isEmpty()) {
     return next();

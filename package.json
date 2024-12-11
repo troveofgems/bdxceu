@@ -1,21 +1,49 @@
 {
   "name": "bdxceu",
+  "type": "module",
   "version": "1.0.0",
   "description": "Chiropractic Educational Web Service",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "concurrently \"cd ./client && npm run serve\"",
-    "devclient": "concurrently \"cd ./client && npm run start\"",
-    "server": "concurrently \"cd ./server && npm run start\"",
-    "devserver": "concurrently \"cd ./server && npm run dev\"",
+    "localclient": "npm run start-locally --prefix client",
+    "devclient": "npm run start --prefix client",
+    "client": "npm run build:prod --prefix client",
+    "localserver": "dotenvx run -f ./server/config/keys/.local.env -- nodemon server/server.js",
+    "devserver": "dotenvx run -f ./server/config/keys/.dev.env -- node server/server.js",
+    "server": "dotenvx run -f ./server/config/keys/.prod.env -- node server/server.js",
+    "locally": "concurrently \"npm:localserver\" \"npm:localclient\"",
+    "dev": "concurrently \"npm:devserver\" \"npm:devclient\"",
     "prod": "concurrently \"npm:server\" \"npm:client\"",
-    "dev": "concurrently \"npm:devserver\" \"npm:devclient\""
+    "build:dev": "npm install && npm install --prefix client && npm run build -- prefix client",
+    "build:prod": "npm install && npm install --prefix client && npm run build --prefix client"
   },
-  "author": "",
+  "author": "Dustin K Greco<dkgreco@thetroveofgems.tech>",
   "license": "ISC",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.14.1",
+    "bcryptjs": "^2.4.3",
+    "big.js": "^6.2.2",
     "concurrently": "^9.0.1",
-    "serve": "^14.2.4"
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-async-handler": "^1.2.0",
+    "express-session": "^1.18.0",
+    "express-validation": "^4.1.1",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "nodemailer": "^6.9.15",
+    "serve": "^14.2.4",
+    "stripe": "^17.4.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "nodemon": "^3.1.7",
+    "prettier": "3.3.3"
   }
 }

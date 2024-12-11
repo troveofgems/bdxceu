@@ -1,12 +1,10 @@
 import express from "express";
-import cors from "cors";
 import {
   handleRegistration,
   handleLogin,
   handleLogout,
   handleForgotPassword,
   handleChangePassword,
-  handleGoogleOAuth,
 } from "../../controllers/auth.controller.js";
 
 import {
@@ -17,15 +15,11 @@ import {
 } from "../../validators/auth/auth.validators.js";
 
 import { asyncWrapper } from "../../libs/dev/async.wrapper.utils.js";
-import {
-  level1Protection,
-  level2Protection,
-  passThroughToken,
-} from "../../middleware/jwt.route.auth.middleware.js";
+import { passThroughToken } from "../../middleware/jwt.route.auth.middleware.js";
 
 const authRouter = express.Router();
 
-// Create User
+// Registration
 authRouter
   .route("/sign-up")
   .post(validateSignupData, asyncWrapper(handleRegistration));
@@ -45,10 +39,5 @@ authRouter
 authRouter
   .route("/change-password/:resetToken")
   .put(validateChangePasswordData, handleChangePassword);
-
-// Google OAuth
-/*authRouter
-    .route("/oauth-google")
-    .post(oAuthWithGoogle);*/
 
 export default authRouter;

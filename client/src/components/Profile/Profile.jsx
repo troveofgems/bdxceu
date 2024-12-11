@@ -59,17 +59,13 @@ export const ProfilePage = () => {
 
     useEffect(() => {
         if(!isLoggedIn) return navigate("/");
-
-        console.log("Need to fetch Profile? ", userProfile?.data?._id !== user._id);
-        console.log(userProfile);
         if(!userProfile || (!!userProfile && userProfile?.data?._id !== user._id)) {
             refetchUserProfile();
-            console.log("Profile Refetch: ", userProfile);
         }
         if(!!userProfile && (userProfile?.data?._id === user._id)) {
             setUserProfileLoaded(true);
         }
-    }, [loadingUserProfile, loadingUpdateUserProfile, userProfileLoaded, userProfile]);
+    }, [loadingUserProfile, loadingUpdateUserProfile, userProfileLoaded, userProfile, userProfileError]);
 
     const onSubmit = async (event) => {
         // this part is for stopping parent forms to trigger their submit
@@ -143,7 +139,6 @@ export const ProfilePage = () => {
                             </div>
                             <div className="col-lg-8 mt-3 overflow-x-hidden">
                                 <Container>
-                                    {/*<h2 className={"text-center mb-4"}>My Profile</h2>*/}
                                     <div className={"mt-5"}>
                                         {(loadingUserProfile) ? (
                                             <Preloader/>
@@ -219,7 +214,7 @@ export const ProfilePage = () => {
                         </h2>
                         <Table striped hover responsive className={"table-sm"}>
                             <thead>
-                            <tr>
+                            <tr key={"table_header"}>
                                 <th>Classroom</th>
                                 {isStudent && (
                                     <>
@@ -247,9 +242,10 @@ export const ProfilePage = () => {
                             {(userProfile.data.subscribedModules.length > 0) && userProfile.data.subscribedModules?.map((module, index) => (
                                 <>
                                     {isStudent && (
-                                        <tr key={module._id}>
+                                        <tr key={`rowEntry_${module._id}`}>
                                             <td>
                                                 <Link
+                                                    key={`navigateTo_${module._id}`}
                                                     to={`/classroom/${(module.product === null) ? "support" : module.product._id}`}>{(module.product === null) ? "Product Removed" : module.product.courseTitle}
                                                 </Link>
                                             </td>
@@ -271,6 +267,7 @@ export const ProfilePage = () => {
                                         <tr key={module._id}>
                                             <td>
                                                 <Link
+                                                    key={`navigateTo_${module._id}`}
                                                     to={`/classroom/${(module.product)}`}>
                                                     {module.courseTitle}
                                                 </Link>
@@ -284,6 +281,7 @@ export const ProfilePage = () => {
                                         <tr key={module._id}>
                                             <td>
                                                 <Link
+                                                    key={`navigateTo_${module._id}`}
                                                     to={`/classroom/${(module.product)}`}>
                                                     {module.courseTitle}
                                                 </Link>
