@@ -63,5 +63,6 @@
     "@babel/plugin-transform-private-property-in-object": "^7.25.7"
   },
   "author": "Dustin K Greco<dkgreco@thetroveofgems.tech>",
+  "proxy": "http://localhost:31670/api/v0.0.0-alpha",
   "homepage": "."
 }

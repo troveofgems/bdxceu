@@ -1,17 +1,51 @@
 #facility-services {
-    background: #e4e4e4;
-    padding: 10rem 0;
-    margin-bottom: 0!important;
+  background: #e4e4e4;
+  padding: 10rem 0;
+  margin-bottom: 0 !important;
 }
 
 #facility-services img {
-    background: #fff;
-    border: 4px solid #f9f9f9;
-    padding: 20px 20px 40px 20px;
+  background: #fff;
+  border: 4px solid #f9f9f9;
+  padding: 20px 20px 40px 20px;
 }
 
 #facility-services blockquote {
-    position: relative;
-    top: -35px;
-    left: 15px;
+  position: relative;
+  top: -35px;
+  left: 15px;
+}
+
+.facilityServices__header {
+  visibility: visible;
+  height: 100%;
+}
+
+.facilityServices__mobileHeader {
+  visibility: collapse;
+  height: 0;
+}
+
+@media (max-width: 915px) {
+  .facilityServicesMobileView {
+    text-align: center;
+  }
+  .services-list {
+    list-style: none;
+    text-align: left;
+  }
+
+  .facilityServices__mobileHeader {
+    visibility: visible;
+    height: auto;
+  }
+
+  .facilityServices__header {
+    visibility: collapse;
+    height: 0;
+  }
+
+  #footer {
+    text-align: center;
+  }
 }

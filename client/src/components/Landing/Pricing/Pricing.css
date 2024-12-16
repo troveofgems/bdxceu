@@ -1,172 +1,190 @@
 #pricing {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
 }
 
 /*---------------------------------------
     Price section              
 -----------------------------------------*/
 #pricing {
-    background: url('../../../assets/images/price-bg.jpg') 50% 0 repeat-y fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    color: #ffffff;
+  background: url("../../../assets/images/price-bg.jpg") 50% 0 repeat-y fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  color: #ffffff;
 }
 
 #pricing .pricing__item {
-    position: relative;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: stretch;
-    align-items: stretch;
-    text-align: center;
-    -webkit-flex: 0 1 330px;
-    flex: 0 1 330px;
-    background-color: rgba(0, 0, 0, .6);
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  text-align: center;
+  -webkit-flex: 0 1 330px;
+  flex: 0 1 330px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #pricing .pricing__feature-list {
-    text-align: left;
+  text-align: left;
 }
 
 #pricing .pricing__action {
-    color: inherit;
-    border: none;
-    background: none;
+  color: inherit;
+  border: none;
+  background: none;
 }
 
 #pricing .pricing__action:focus {
-    outline: none;
+  outline: none;
 }
 
 #pricing .pricing__item {
-    font-size: 20px;
-    padding: 2em;
-    cursor: default;
-    color: #fff;
-    border: 1px solid #666;
-    -webkit-transition: background-color 0.6s, color 0.3s;
-    transition: background-color 0.6s, color 0.3s;
+  font-size: 20px;
+  padding: 2em;
+  cursor: default;
+  color: #fff;
+  border: 1px solid #666;
+  -webkit-transition:
+    background-color 0.6s,
+    color 0.3s;
+  transition:
+    background-color 0.6s,
+    color 0.3s;
 }
 
 #pricing .pricing__item:nth-child(2) {
-    border-right: none;
-    border-left: none;
+  border-right: none;
+  border-left: none;
 }
 
 #pricing .pricing__item:hover {
-    color: #444;
-    background: #ffffff;
-    border-color: transparent;
-    .publishTag {
-        background: rgba(0, 0, 0, 0);
-    }
+  color: #444;
+  background: #ffffff;
+  border-color: transparent;
+  .publishTag {
+    background: rgba(0, 0, 0, 0);
+  }
 }
 
 #pricing .pricing__title {
-    font-size: 2em;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  font-size: 2em;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #pricing .pricing__price {
-    font-size: 1.45em;
-    font-weight: bold;
-    line-height: 120px;
-    width: 120px;
-    height: 120px;
-    margin: 1.15em auto 0.3em;
-    border-radius: 50%;
-    background: #ffffff;
-    -webkit-transition: color 0.3s, background 0.3s;
-    transition: color 0.3s, background 0.3s;
+  font-size: 1.45em;
+  font-weight: bold;
+  line-height: 120px;
+  width: 120px;
+  height: 120px;
+  margin: 1.15em auto 0.3em;
+  border-radius: 50%;
+  background: #ffffff;
+  -webkit-transition:
+    color 0.3s,
+    background 0.3s;
+  transition:
+    color 0.3s,
+    background 0.3s;
 }
 
 #pricing .pricing__item:first-child .pricing__price {
-    background: #26253a;
+  background: #26253a;
 }
 
 #pricing .pricing__item:nth-child(2) .pricing__price {
-    background: #26253a;
+  background: #26253a;
 }
 
 #pricing .pricing__item:hover .pricing__price {
-    color: #fff;
-    background: #222;
+  color: #fff;
+  background: #222;
 }
 
 #pricing .pricing__feature-list {
-    margin: 0;
-    padding: 1em 1em 2em 1em;
-    font-weight: bold;
-    list-style: none;
-    letter-spacing: 0.6px;
-    line-height: 32px;
-    text-align: center;
+  margin: 0;
+  padding: 1em 1em 2em 1em;
+  font-weight: bold;
+  list-style: none;
+  letter-spacing: 0.6px;
+  line-height: 32px;
+  text-align: center;
 }
 
 #pricing .pricing__action {
-    font-weight: bold;
-    margin: 0 auto;
-    padding: 18px 48px;
-    opacity: 0;
-    color: #fff;
-    font-size: 20px;
-    background: #26253a;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-    transition: transform 0.3s, opacity 0.3s;
-    -webkit-transform: translate3d(0, -15px, 0);
-    transform: translate3d(0, -15px, 0);
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 18px 48px;
+  opacity: 0;
+  color: #fff;
+  font-size: 20px;
+  background: #26253a;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  -webkit-transition:
+    -webkit-transform 0.3s,
+    opacity 0.3s;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+  -webkit-transform: translate3d(0, -15px, 0);
+  transform: translate3d(0, -15px, 0);
 }
 
 #pricing .pricing__item:hover .pricing__action {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 #pricing .pricing__action:hover,
 #pricing .pricing__action:focus {
-    background: #222;
+  background: #222;
 }
 
 #pricing button a {
-    color: #fff;
+  color: #fff;
 }
 
 .publishTag {
-    align-self: center;
-    text-transform: uppercase;
-    background: rgba(0, 0, 0, .65);
-    padding: .1rem;
-    width: fit-content;
+  align-self: center;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.1rem;
+  width: fit-content;
 }
 
 .published {
-    color: #4cae4c;
+  color: #4cae4c;
 }
 
 .inactive {
-    color: #900f02;
+  color: #900f02;
 }
 
 button.pricing__action.admin__product__action.mb-3 {
-    opacity: 1!important;
-    transform: none!important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-
 section#pricing.parallax-section {
-    min-height: inherit;
+  min-height: inherit;
 }
 
 .pricing__no_items {
-    margin: 27rem auto;
+  margin: 27rem auto;
+}
+
+@media (max-width: 915px) {
+  #pricing .pricing__action {
+    opacity: 1 !important;
+    font-size: 1rem !important;
+  }
 }

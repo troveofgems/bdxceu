@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+import cors from "cors";
 
 // Utils
 import { connectToDB } from "./db/connection.db.js";
@@ -36,7 +37,6 @@ async function initializeApp() {
     // Production Settings
     if (process.env.NODE_ENV === "prod") {
       const pathToServe = path.join(__dirname, "..", "/client/build");
-      console.log("Path to serve? ", pathToServe);
       app.use(express.static(pathToServe));
 
       let filePath = path.resolve(
@@ -46,14 +46,29 @@ async function initializeApp() {
         "build",
         "index.html",
       );
-      console.log("Serving file? ", filePath);
-
       app.get("*", (req, res) =>
         res.sendFile(
           path.resolve(__dirname, "..", "client", "build", "index.html"),
         ),
       );
     } else {
+      console.log("Cors Being Enabled For Local or Dev Envs...");
+      app.options("*", cors());
+      app.use(function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Origin, X-Requested-With, Content-Type, Accept",
+        );
+        next();
+      });
+
+      app.use(
+        cors({
+          origin: "*",
+        }),
+      );
+
       app.get("/", (req, res) => {
         return res.send("BDXCEU Backend Ping Successful...");
       });
