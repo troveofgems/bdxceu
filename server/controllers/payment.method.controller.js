@@ -18,7 +18,7 @@ export const handleFetchPaypalClientId = async (req, res, next) => {
 export const handlePayWithStripe = async (req, res, next) => {
   const YOUR_DOMAIN = "http://localhost:3000";
 
-  const stripe = new Stripe("sk_test_wy4nfqXnMzBeAEHcoDvNMkuX00niUsb5O6", {
+  const stripe = new Stripe(process.env.STRIPE_SK, {
     apiVersion: "2020-08-27",
   });
 
