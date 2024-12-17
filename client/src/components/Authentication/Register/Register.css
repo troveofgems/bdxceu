@@ -1,20 +1,33 @@
 .PhoneInput {
-    width: 100%!important;
+  width: 100% !important;
 }
 
 .phoneInputCountry {
-    margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .registrantNameBlock {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .nameField {
-    padding: 0;
+  padding: 0;
 }
 
 .registrationLead {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 915px) {
+  .ReactModal__Content--after-open {
+    overflow-y: scroll;
+  }
+  .registrantNameBlock {
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  .modalHeaderContent {
+    margin: 0.5rem 0 !important;
+  }
 }
