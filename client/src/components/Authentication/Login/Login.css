@@ -1,19 +1,29 @@
 .styleAsLink {
-    color: blue;
-    background: none;
-    text-decoration: underline;
-    box-shadow: unset;
+  color: blue;
+  background: none;
+  text-decoration: underline;
+  box-shadow: unset;
 }
 
 .styleAsLink:hover {
-    box-shadow: unset;
-    transform: unset;
+  box-shadow: unset;
+  transform: unset;
 }
 
 form.log-in {
-    width: 75%;
+  width: 75%;
 }
 
 form.log-in > h4 {
-    margin-top: 0;
+  margin-top: 0;
+}
+
+@media (max-width: 915px) {
+  .ReactModal__Content--after-open {
+    overflow-y: scroll !important;
+  }
+  .modalHeaderContent {
+    padding-top: 5rem !important;
+    margin-bottom: 0.25rem !important;
+  }
 }

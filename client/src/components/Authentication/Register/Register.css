@@ -21,13 +21,18 @@
 
 @media (max-width: 915px) {
   .ReactModal__Content--after-open {
-    overflow-y: scroll;
+    overflow-y: scroll !important;
   }
   .registrantNameBlock {
     flex-direction: column;
     margin-top: 1rem;
   }
   .modalHeaderContent {
-    margin: 0.5rem 0 !important;
+    padding-top: 17rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .ReactModal__Overlay {
+    overflow-y: scroll !important;
   }
 }

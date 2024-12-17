@@ -84,11 +84,8 @@ export const RegistrationForm = () => {
       if (
         Object.prototype.toString.call(err?.response?.data) === "[object Array]"
       ) {
-        console.log("Need to parse error: ");
         let fullValidationMessage = "";
-        console.log("Test", err.response.data);
         err.response.data.map((item) => {
-          console.log("Item: ", item);
           let genericErrorMessageIncluded = item.msg.includes("Invalid value"),
             filterMessages = genericErrorMessageIncluded ? 1 : 0;
           fullValidationMessage += genericErrorMessageIncluded

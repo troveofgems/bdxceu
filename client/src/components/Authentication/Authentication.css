@@ -269,7 +269,9 @@ input {
     width: 98% !important;
   }
   .left {
-    visibility: collapse;
+    visibility: collapse !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   .styleAsLink {
