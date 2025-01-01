@@ -18,7 +18,6 @@ import { formatToUsd } from "../../../assets/js/printing.utils";
 import { getUserInfo } from "../../../utils/user.utils";
 
 // Associated Styles
-/*import "../parallax.css";*/
 import "./Pricing.css";
 const Pricing = () => {
   const { user } = useSelector((state) => state.auth),
@@ -168,6 +167,7 @@ const Pricing = () => {
                   </div>
                 ))}
               {isAdmin &&
+                productList.data.length > 0 &&
                 productList.data.map((product, i) => (
                   <div
                     className="wow fadeInUp col-lg-6 col-md-12 col-sm-12  mt-2 mb-2"
