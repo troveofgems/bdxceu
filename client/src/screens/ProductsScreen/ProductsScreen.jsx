@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 import Pricing from "../../components/Landing/Pricing/Pricing";
 import AdminHeader from "../../components/shared/Header/Admin.Header";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { getUserInfo } from "../../utils/user.utils";
 
 const ProductsScreen = () => {
-    const
-        { userInfo } = useSelector((state) => state.auth),
-        isAdmin = userInfo?.data?.authLevel === "admin";
+  const { user } = useSelector((state) => state.auth),
+    { isAdmin } = getUserInfo(user);
 
-    return (
-        <>
-            {isAdmin && <AdminHeader subsection={"product"}/>}
-            <Pricing isAdmin={isAdmin} />
-        </>
-    );
-}
+  return (
+    <>
+      {isAdmin && <AdminHeader subsection={"product"} />}
+      <Pricing isAdmin={isAdmin} />
+    </>
+  );
+};
 
 export default ProductsScreen;

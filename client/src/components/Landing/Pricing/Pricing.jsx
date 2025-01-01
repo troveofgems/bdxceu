@@ -18,7 +18,6 @@ import { formatToUsd } from "../../../assets/js/printing.utils";
 import { getUserInfo } from "../../../utils/user.utils";
 
 // Associated Styles
-/*import "../parallax.css";*/
 import "./Pricing.css";
 const Pricing = () => {
   const { user } = useSelector((state) => state.auth),
@@ -45,11 +44,11 @@ const Pricing = () => {
   const handleDeleteProduct = async (productId) => {
     if (
       window.confirm(
-        "Are you sure you want to delete this Product? This action cannot be undone.",
+        `Are you sure you want to delete this Product? This action cannot be undone.`,
       )
     ) {
       try {
-        await deleteProduct(productId);
+        await deleteProduct({ productId });
         refetchProductList();
       } catch (err) {
         console.error(err);
@@ -77,7 +76,7 @@ const Pricing = () => {
         >
           {/* No Products Published Yet - All Users Regardless of Auth Status */}
           {(!isLoggedIn || isLoggedIn) && productList?.data?.length === 0 && (
-            <div className="col-md-6 col-sm-6">
+            <div className="col-lg-6 col-md-6 col-sm-6">
               <div className="pricing__item pricing__no_items">
                 <h3 className="pricing__title">No Product Offerings Yet!</h3>
               </div>
@@ -121,7 +120,7 @@ const Pricing = () => {
               {isStudent &&
                 productList.data.map((product, i) => (
                   <div
-                    className="wow fadeInUp col-md-6 col-sm-6  mt-2 mb-2"
+                    className="wow fadeInUp col-lg-6 col-md-12 col-sm-12  mt-2 mb-2"
                     data-wow-delay={1 + parseInt(i) * 0.2 + "s"}
                     key={product._id}
                   >
@@ -168,9 +167,10 @@ const Pricing = () => {
                   </div>
                 ))}
               {isAdmin &&
+                productList.data.length > 0 &&
                 productList.data.map((product, i) => (
                   <div
-                    className="wow fadeInUp col-md-12 col-sm-12  mt-2 mb-2"
+                    className="wow fadeInUp col-lg-6 col-md-12 col-sm-12  mt-2 mb-2"
                     key={product._id}
                   >
                     <div className="pricing__item">
@@ -209,7 +209,7 @@ const Pricing = () => {
                       </button>
                       <button
                         className="pricing__action mt-2"
-                        onClick={handleDeleteProduct}
+                        onClick={() => handleDeleteProduct(product._id)}
                       >
                         <span>Delete</span>
                       </button>
