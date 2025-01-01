@@ -83,7 +83,6 @@ export const ProfilePage = () => {
 
   const onSubmit = async (event) => {
     // this part is for stopping parent forms to trigger their submit
-    console.log("Inside onSubmit");
     if (event) {
       // sometimes not true, e.g. React Native
       if (typeof event.preventDefault === "function") {
@@ -102,19 +101,14 @@ export const ProfilePage = () => {
         lastName: updates.last_name,
       };
 
-      console.log("Targeting Phone: ", phoneNumber);
-      console.log("Phone Number Change? ", changePhone);
       if (changePhone !== null) {
         profileUpdates.phone = changePhone;
       }
-
-      console.log("Push Updates For User: ", profileUpdates);
 
       try {
         const res = await updateUserProfile({
           updates: profileUpdates,
         }).unwrap();
-        console.log("Res was ", res);
         refetchUserProfile();
       } catch (err) {
         console.log("EMIT ", err);
