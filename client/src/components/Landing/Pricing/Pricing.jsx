@@ -44,11 +44,11 @@ const Pricing = () => {
   const handleDeleteProduct = async (productId) => {
     if (
       window.confirm(
-        "Are you sure you want to delete this Product? This action cannot be undone.",
+        `Are you sure you want to delete this Product? This action cannot be undone.`,
       )
     ) {
       try {
-        await deleteProduct(productId);
+        await deleteProduct({ productId });
         refetchProductList();
       } catch (err) {
         console.error(err);
@@ -209,7 +209,7 @@ const Pricing = () => {
                       </button>
                       <button
                         className="pricing__action mt-2"
-                        onClick={handleDeleteProduct}
+                        onClick={() => handleDeleteProduct(product._id)}
                       >
                         <span>Delete</span>
                       </button>

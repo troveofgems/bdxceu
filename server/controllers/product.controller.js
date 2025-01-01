@@ -171,6 +171,8 @@ export const handleUpdateProduct = async (req, res, next) => {
 export const handleDeleteProduct = async (req, res, next) => {
   let apiResponse = buildAPIBodyResponse("/admin/product");
 
+  console.log("Deleting?", req.params);
+
   await Product.findByIdAndDelete(req.params.productId);
 
   apiResponse.success = true;
