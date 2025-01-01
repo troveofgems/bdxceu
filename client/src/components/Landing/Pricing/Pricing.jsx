@@ -77,7 +77,7 @@ const Pricing = () => {
         >
           {/* No Products Published Yet - All Users Regardless of Auth Status */}
           {(!isLoggedIn || isLoggedIn) && productList?.data?.length === 0 && (
-            <div className="col-md-6 col-sm-6">
+            <div className="col-lg-6 col-md-6 col-sm-6">
               <div className="pricing__item pricing__no_items">
                 <h3 className="pricing__title">No Product Offerings Yet!</h3>
               </div>
@@ -121,7 +121,7 @@ const Pricing = () => {
               {isStudent &&
                 productList.data.map((product, i) => (
                   <div
-                    className="wow fadeInUp col-md-6 col-sm-6  mt-2 mb-2"
+                    className="wow fadeInUp col-lg-6 col-md-12 col-sm-12  mt-2 mb-2"
                     data-wow-delay={1 + parseInt(i) * 0.2 + "s"}
                     key={product._id}
                   >
@@ -170,7 +170,7 @@ const Pricing = () => {
               {isAdmin &&
                 productList.data.map((product, i) => (
                   <div
-                    className="wow fadeInUp col-md-12 col-sm-12  mt-2 mb-2"
+                    className="wow fadeInUp col-lg-6 col-md-12 col-sm-12  mt-2 mb-2"
                     key={product._id}
                   >
                     <div className="pricing__item">
