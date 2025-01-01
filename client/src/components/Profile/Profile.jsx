@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
+import { Button, Container, Row, Table } from "react-bootstrap";
 
 // Redux Queries & Mutations
 import {
@@ -30,12 +31,9 @@ import EddieStanislawski from "../../assets/images/team/stanislawski_headshot_2.
 import LaurenJung from "../../assets/images/team/jung_headshot.jpg";
 import AnonProfile from "../../assets/images/placeholders/anon_profile.png";
 
-// CSS Import For Component
-
-import { Button, Container, Row, Table } from "react-bootstrap";
-import { formatToUsd } from "../../assets/js/printing.utils";
 import { formatDate } from "../../utils/field.formatters";
 
+// CSS Import For Component
 import "./Profile.css";
 export const ProfilePage = () => {
   const methods = useForm();
