@@ -37,7 +37,12 @@ async function initializeApp() {
     // Production Settings
     if (process.env.NODE_ENV === "prod") {
       const pathToServe = path.join(__dirname, "..", "/client/build");
-      app.use(express.static(pathToServe));
+      app.use("/", express.static(pathToServe));
+      app.use(
+        "/static/media",
+        express.static(path.join(__dirname, "..", "/client/build/static")),
+      );
+
       app.get("*", (req, res) => {
         return res.sendFile(
           path.resolve(__dirname, "..", "client", "build", "index.html"),
