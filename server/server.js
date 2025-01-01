@@ -39,18 +39,18 @@ async function initializeApp() {
       const pathToServe = path.join(__dirname, "..", "/client/build");
       app.use(express.static(pathToServe));
 
-      let filePath = path.resolve(
+      /*      let filePath = path.resolve(
         __dirname,
         "..",
         "client",
         "build",
         "index.html",
-      );
-      app.get("*", (req, res) =>
-        res.sendFile(
+      );*/
+      app.get("*", (req, res) => {
+        return res.sendFile(
           path.resolve(__dirname, "..", "client", "build", "index.html"),
-        ),
-      );
+        );
+      });
     } else {
       console.log("Cors Being Enabled For Local or Dev Envs...");
       app.options("*", cors());
