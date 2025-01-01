@@ -64,5 +64,5 @@
   },
   "author": "Dustin K Greco<dkgreco@thetroveofgems.tech>",
   "proxy": "http://localhost:31670/api/v0.0.0-alpha",
-  "homepage": "."
+  "homepage": "/"
 }

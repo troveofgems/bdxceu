@@ -40,7 +40,9 @@ async function initializeApp() {
       app.use("/", express.static(pathToServe));
       app.use(
         "/static/media",
-        express.static(path.join(__dirname, "..", "/client/build/static")),
+        express.static(
+          path.join(__dirname, "..", "/client/build/static/media"),
+        ),
       );
 
       app.get("*", (req, res) => {
