@@ -36,7 +36,7 @@ async function initializeApp() {
 
     // Production Settings
     if (process.env.NODE_ENV === "prod") {
-      const pathToServe = path.join(__dirname, "..", "/client/build");
+      const pathToServe = path.join(__dirname, "..", "/client/build/static");
       app.use(express.static(pathToServe));
 
       let filePath = path.resolve(
